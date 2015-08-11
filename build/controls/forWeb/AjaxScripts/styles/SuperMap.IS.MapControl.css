@@ -1,0 +1,6 @@
+.zoomRect { position:absolute; display:block; border:2px dashed #336699; z-index:100; }
+.zoomBox_fg { position:absolute; display:block; border:2px dashed white; z-index:100; overflow:hidden }
+.zoomBox_bg { position:absolute; display:block; border:2px dashed black; z-index:100; overflow:hidden }
+
+.logoSuperMap { position:absolute; display:none; cursor:pointer; z-index:30; }
+.logoSuperMap_IE { width:160px; height:24px;  }

@@ -1,0 +1,11 @@
+﻿<Window x:Class="mapsui.demo.wpf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mapsui="clr-namespace:Mapsui.Windows;assembly=Mapsui.Windows"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        <mapsui:MapControl x:Name="mapControl" ShowStatistics="True"
+            VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        </mapsui:MapControl>
+    </Grid>
+</Window>

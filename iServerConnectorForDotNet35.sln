@@ -1,0 +1,81 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Connector", "Connector", "{51670461-33F7-4E11-9B9B-F0A5262A6699}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9D66F64F-2124-427D-9333-D52F2B6212E5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demo", "Demo", "{7503D2B0-6AB8-4E04-923A-33307084F279}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Extension", "Extension", "{C96D4F05-A086-4E33-B578-E6CA14DAC820}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gmap.demo.winform", "Demo\gmap.demo.winform\gmap.demo.winform.csproj", "{193F7E9D-7F6F-4915-873A-CC663DCDCF42}"
+	ProjectSection(ProjectDependencies) = postProject
+		{59C575E0-91D6-4F16-B79A-268A1B01020A} = {59C575E0-91D6-4F16-B79A-268A1B01020A}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mapsui.demo.winform", "Demo\mapsui.demo.winform\mapsui.demo.winform.csproj", "{E93033F1-C3A5-4484-8595-77CA8635A7B8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{804F82FD-DCFB-4CB3-B51D-5EBE25938D15} = {804F82FD-DCFB-4CB3-B51D-5EBE25938D15}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mapsui.demo.wpf", "Demo\mapsui.demo.wpf\mapsui.demo.wpf.csproj", "{E46564BD-51D3-4115-9E29-2C8CE5F03F0B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{804F82FD-DCFB-4CB3-B51D-5EBE25938D15} = {804F82FD-DCFB-4CB3-B51D-5EBE25938D15}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Brutile.SuperMapProvider", "Extension\supermap.iserver.brutile\Brutile.SuperMapProvider.csproj", "{804F82FD-DCFB-4CB3-B51D-5EBE25938D15}"
+	ProjectSection(ProjectDependencies) = postProject
+		{AA7F9714-C07F-4B57-9245-ED8E7CCB3BEE} = {AA7F9714-C07F-4B57-9245-ED8E7CCB3BEE}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GMap.SuperMapProvider", "Extension\supermap.iserver.gmap\GMap.SuperMapProvider.csproj", "{59C575E0-91D6-4F16-B79A-268A1B01020A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{AA7F9714-C07F-4B57-9245-ED8E7CCB3BEE} = {AA7F9714-C07F-4B57-9245-ED8E7CCB3BEE}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connector35", "Connector\Connector35.csproj", "{AA7F9714-C07F-4B57-9245-ED8E7CCB3BEE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{193F7E9D-7F6F-4915-873A-CC663DCDCF42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{193F7E9D-7F6F-4915-873A-CC663DCDCF42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{193F7E9D-7F6F-4915-873A-CC663DCDCF42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{193F7E9D-7F6F-4915-873A-CC663DCDCF42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E93033F1-C3A5-4484-8595-77CA8635A7B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E93033F1-C3A5-4484-8595-77CA8635A7B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E93033F1-C3A5-4484-8595-77CA8635A7B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E93033F1-C3A5-4484-8595-77CA8635A7B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E46564BD-51D3-4115-9E29-2C8CE5F03F0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E46564BD-51D3-4115-9E29-2C8CE5F03F0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E46564BD-51D3-4115-9E29-2C8CE5F03F0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E46564BD-51D3-4115-9E29-2C8CE5F03F0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{804F82FD-DCFB-4CB3-B51D-5EBE25938D15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{804F82FD-DCFB-4CB3-B51D-5EBE25938D15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{804F82FD-DCFB-4CB3-B51D-5EBE25938D15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{804F82FD-DCFB-4CB3-B51D-5EBE25938D15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59C575E0-91D6-4F16-B79A-268A1B01020A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59C575E0-91D6-4F16-B79A-268A1B01020A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59C575E0-91D6-4F16-B79A-268A1B01020A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59C575E0-91D6-4F16-B79A-268A1B01020A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA7F9714-C07F-4B57-9245-ED8E7CCB3BEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA7F9714-C07F-4B57-9245-ED8E7CCB3BEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA7F9714-C07F-4B57-9245-ED8E7CCB3BEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA7F9714-C07F-4B57-9245-ED8E7CCB3BEE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AA7F9714-C07F-4B57-9245-ED8E7CCB3BEE} = {51670461-33F7-4E11-9B9B-F0A5262A6699}
+		{193F7E9D-7F6F-4915-873A-CC663DCDCF42} = {7503D2B0-6AB8-4E04-923A-33307084F279}
+		{E93033F1-C3A5-4484-8595-77CA8635A7B8} = {7503D2B0-6AB8-4E04-923A-33307084F279}
+		{E46564BD-51D3-4115-9E29-2C8CE5F03F0B} = {7503D2B0-6AB8-4E04-923A-33307084F279}
+		{804F82FD-DCFB-4CB3-B51D-5EBE25938D15} = {C96D4F05-A086-4E33-B578-E6CA14DAC820}
+		{59C575E0-91D6-4F16-B79A-268A1B01020A} = {C96D4F05-A086-4E33-B578-E6CA14DAC820}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,2103 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SuperMap.IS.ServiceInterface</name>
+    </assembly>
+    <members>
+        <member name="T:SuperMap.IS.ServiceInterface.IHandlerSecurity">
+            <summary>
+            为适应自定义Handler安全机制处理Http Web请求而实现的协定
+            </summary>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IHandlerSecurity.RequestSecurity(System.String,System.String,System.String@)">
+            <summary>
+            通过实现自定义IHandlerSecurity接口定义，启用Http Web 请求的合法性
+            </summary>
+            <param name="costomInfo">自定义参数信息</param>
+            <param name="methondName">当前Web请求的接口</param>
+            <param name="message">返回信息</param>
+            <returns>当前接口和用户下是否具有合法</returns>
+        </member>
+        <member name="T:SuperMap.IS.ServiceInterface.IService">
+            <summary>
+            通用服务对象接口。
+            </summary>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IService.Initialize(System.Object)">
+            <summary>
+            初始化。
+            </summary>
+            <param name="param">参数</param>
+            <returns>是否成功</returns>
+        </member>
+        <member name="T:SuperMap.IS.ServiceInterface.IGridAnalystService">
+            <summary>
+            栅格分析服务
+            </summary>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IGridAnalystService.RasterToVector(System.String,SuperMap.IS.Utility.RasterToVectorParam)">
+            <summary>
+            栅格数据集转换成矢量数据集。
+            </summary>
+            <param name="mapName">要进行栅格数据集转换成矢量数据集操作的数据所在地图名称。</param>
+            <param name="rasterToVectorParam">栅格数据集转换成矢量数据集操作参数。</param>
+            <returns>栅格数据集转换成矢量数据集操作结果。</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IGridAnalystService.Interpolate(System.String,SuperMap.IS.Utility.InterpolateParam)">
+            <summary>
+            使用内插方法估算单元格的值，生成Grid数据集。
+            </summary>
+            <param name="mapName">进行内插表面的数据所在的地图名称。</param>
+            <param name="param">内插表面参数。</param>
+            <returns>返回内插表面的结果。</returns>
+            <remarks>
+            对于一个区域，如果只有部分离散点数据已知，要想创建或者模拟一个表面或者场，需要对未知点的值进行估计，
+            通常采用的是内插表面的方法。这里提供多种内插方法，用于模拟或者创建一个表面，分别是：距离反比权重法（IDW）、普通克吕金插值方法、普通克吕金插值方法（利用四叉树方法搜索插值点）、
+            普通径向基函数RBF插值法，径向基函数RBF插值法（利用四叉树方法搜索插值点）。选用何种方法进行内插，通常取决于样点数据的分布和要创建表面的类型。
+            </remarks>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IGridAnalystService.Aggregate(System.String,SuperMap.IS.Utility.AggregateParam)">
+            <summary>
+            栅格聚合操作。
+            </summary>
+            <param name="mapName">要进行栅格聚合操作的数据所在的地图名称。</param>
+            <param name="param">设置栅格聚合操作需要的参数。</param>
+            <returns>返回栅格聚合操作结果。</returns>
+            <remarks>
+            栅格聚合操作是以整数倍缩小栅格分辩率，生成一个新的栅格的过程，每个栅格的值由其包含的原栅格的值共同决定，可以取包含栅格的和、最大值、最小值、平均值、中数。
+            </remarks>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IGridAnalystService.Reclass(System.String,SuperMap.IS.Utility.ReclassParam)">
+            <summary>
+            栅格重分级操作。
+            </summary>
+            <param name="mapName">要进行栅格重分级操作的数据所在的地图名称</param>
+            <param name="param">设置栅格重分级操作需要的参数。</param>
+            <returns>栅格重分级操作结果。</returns>
+            <remarks>
+            栅格重分级操作就是重新定义栅格数据集中每个格网的数值。
+            </remarks>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IGridAnalystService.Replace(System.String,SuperMap.IS.Utility.ReplaceParam)">
+            <summary>
+            栅格数据查找替换操作。
+            </summary>
+            <param name="mapName">要进行栅格数据查找替换操作的数据所在的地图名称。</param>
+            <param name="param">设置栅格数据查找替换操作参数。</param>
+            <returns>返回栅格数据查找与替换操作的结果。</returns>
+            <remarks>
+            该方法主要通过一个属性表数据集来设置要查找的栅格数据，以及要替换的数据。使用该方法可以实现查找并替换原栅格数据集中栅格数据的目标。
+            </remarks>  
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IGridAnalystService.Resample(System.String,SuperMap.IS.Utility.ResampleParam)">
+            <summary>
+            栅格重采样操作。
+            </summary>
+            <param name="mapName">要进行栅格重采样操作的数据所在的地图名称。</param>
+            <param name="param">栅格重采样操作参数。</param>
+            <returns>栅格重采样操作结果。</returns>
+            <remarks>
+            <para>栅格数据进行配准或纠正、投影等几何变换后，栅格的每个格子中心位置通常会发生变化，其在输入栅格中的位置不一定是整数的行列号，因此需要根据输出栅格上每个格子在输入栅格中的位置，对输入栅格按一定规则进行重采样，进行栅格值的插值计算，建立新的栅格矩阵。</para>
+            <para>重采样方法同样会应用在不同分辩率的栅格数据之间进行代数运算时，需要将栅格大小统一到一个指定的分辩率上，此时就需要对栅格进行重采样。</para>
+            <para>栅格重采样的方法通常有三种：最邻近法、双线性内插法和三次卷积内插法；关于此三种方法的差异和适用范围，请参阅<see cref="T:SuperMap.IS.Utility.ResampleType"/>。</para>
+            </remarks>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IGridAnalystService.IsoLine(System.String,SuperMap.IS.Utility.MapCoord[],System.Double[],SuperMap.IS.Utility.InterpolateType,System.Double,SuperMap.IS.Utility.IsoLineParam)">
+            <summary>
+            根据离散点对象数组进行提取等值线操作。
+            </summary>
+            <param name="mapName">要提取等值线的数据所在的地图名称。</param>
+            <param name="pointPositions">离散点坐标数组。</param>
+            <param name="pointValues">离散点的值数组。</param>
+            <param name="interpolateType">使用的插值方法。可以选择 TIN，IDW，Krig 或样条等方法进行插值。使用 Krig 方法插值时，离散点至少应大于8个。</param>
+            <param name="gridResolution">使用IDW、Krig 或样条曲面的方法进行插值时，中间结果 DEM 的分辩率，通常为20。</param>
+            <param name="param">提取等值线操作参数。</param>
+            <returns>提取等值线操作结果。</returns>
+            <seealso cref="T:SuperMap.IS.Utility.InterpolateType"/>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IGridAnalystService.IsoLine(System.String,System.String,System.String,SuperMap.IS.Utility.InterpolateType,System.Double,SuperMap.IS.Utility.IsoLineParam)">
+            <summary>
+            根据离散点数据集进行提取等值线操作。
+            </summary>
+            <param name="mapName">要提取等值线的数据所在的地图名称.</param>
+            <param name="pointDataset">离散点数据集标识，形如“point@changchun”。该数据集的属性表中存储了要生成等值线的值字段。</param>
+            <param name="pointValueField">离散点数据集中的值字段名称。 </param>
+            <param name="interpolateType">使用的插值方法。可以选择 TIN，IDW，Krig 或样条等方法进行插值。使用 Krig 方法插值时，点数据集中的采样点至少应大于8个。 </param>
+            <param name="gridResolution">使用IDW、Krig 或样条曲面的方法进行插值时，中间结果 DEM 的分辩率，通常为 20。</param>
+            <param name="param"> 提取等值线操作参数。</param>
+            <returns>提取等值线操作结果。</returns>
+            <seealso cref="T:SuperMap.IS.Utility.InterpolateType"/>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IGridAnalystService.IsoLine(System.String,System.String,SuperMap.IS.Utility.IsoLineParam)">
+            <summary>
+            根据栅格数据集进行提取等值线操作。
+            </summary>
+            <param name="mapName">要提取等值线的数据所在的地图名称。</param>
+            <param name="gridDataset">要进行提取等值线操作的栅格数据集标识，可以是 Grid 或 DEM 数据集。</param>
+            <param name="param"> 提取等值线操作参数。</param>
+            <returns>提取等值线操作结果。</returns>
+            <remarks>由栅格数据提取等值线的计算结果和栅格数据本身的特性密切相关。
+            不能期望从一个低精度的栅格数据得出一个高精度的等值线模型。</remarks>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IGridAnalystService.IsoRegion(System.String,SuperMap.IS.Utility.IsoRegionParam)">
+            <summary>
+            根据栅格数据提取等值面操作。
+            </summary>
+            <param name="mapName">要提取等值面的数据所在的地图名称。</param>
+            <param name="param"> 提取等值面操作参数。</param>
+            <returns>提取等值面操作结果。</returns>
+            <remarks>由栅格数据提取等值面的计算结果和栅格数据本身的特性密切相关。
+            不能期望从一个低精度的栅格数据得出一个高精度的等值面模型。</remarks>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IGridAnalystService.IsoRegion(System.String,System.String,System.String,SuperMap.IS.Utility.InterpolateParam,SuperMap.IS.Utility.IsoRegionParam)">
+            <summary>
+            根据离散点数据集进行提取等值面操作。
+            </summary>
+            <param name="mapName">要提取等值面的数据所在的地图名称.</param>
+            <param name="pointDataset">离散点数据集标识，形如“point@changchun”。该数据集的属性表中存储了要生成等值面的值字段。</param>
+            <param name="pointValueField">离散点数据集中的值字段名称。 </param>
+            <param name="interpolateParam">离散点数据集进行插值操作参数</param>
+            <param name="param">提取等值面操作参数。</param>
+            <returns>提取等值面操作结果</returns>
+            <remarks>
+            在使用离散点数据集进行提取等值面的方法中，方法中存在一个内插值参数interpolateParam，内插值参数的中间结果Dataset、FieldName、OverwriteIfExists、ResultDataset、Bounds由内部决定，
+            方法中参数interpolateParam不必对其进行任何设置。
+            </remarks>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IGridAnalystService.IsoRegion(System.String,SuperMap.IS.Utility.MapCoord[],System.Double[],SuperMap.IS.Utility.InterpolateParam,SuperMap.IS.Utility.IsoRegionParam)">
+            <summary>
+            根据离散点对象数组进行提取等值面操作。
+            </summary>
+            <param name="mapName">要提取等值面的数据所在的地图名称。</param>
+            <param name="pointPositions">离散点坐标数组。</param>
+            <param name="pointValues">离散点的值数组。</param>
+            <param name="interpolateParam">离散点进行插值操作参数</param>
+            <param name="param">提取等值面操作参数。</param>
+            <returns></returns>
+            <remarks>
+            在使用离散点进行提取等值面的方法中，方法中存在一个内插值参数interpolateParam，内插值参数的中间结果Dataset、FieldName、OverwriteIfExists、ResultDataset、Bounds由内部决定，
+            方法中参数interpolateParam不必对其进行任何设置。
+            </remarks>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IGridAnalystService.GridClip(System.String,SuperMap.IS.Utility.GridClipParam)">
+            <summary>
+            栅格裁剪操作。
+            </summary>
+            <param name="mapName">要进行栅格裁剪的数据所在的地图名称。</param>
+            <param name="param"> 栅格裁剪操作参数。</param>
+            <returns>栅格裁剪操作结果。</returns>
+            <remarks>栅格区域裁剪对Image、Grid/DEM 数据集进行真正裁剪，而对打开的 ECW 以及 MrSID 影像进行显示裁剪，并不裁剪原数据。此方法不支持裁剪 SIT 和影像插件 数据。</remarks>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IGridAnalystService.GridCompare(System.String,SuperMap.IS.Utility.GridCompareParam)">
+            <summary>
+            栅格比较。该方法用于对一个栅格数据集逐行逐列与另一栅格数据集或者一个常数比较，判断他们是否满足一定的关系，如相等，大于，小于等。
+            </summary>
+            <param name="mapName">要进行栅格比较的数据所在的地图名称。</param>
+            <param name="gridCompareParam">栅格比较参数。通过该参数设置用于比较的栅格数据集，常数，以及对比的关系（大于、等于、小于等）。</param>
+            <returns>栅格比较结果。返回栅格比较操作是否成功，生成的结果数据集的名称等。</returns>
+            <remarks>
+            进行比较的两个栅格数据集或者栅格数据集与常量，如果两者符合对比关系（相等，大于、小于等），则结果栅格数据集中相应像元值为1，不符合对比关系则为0。
+            当指定了源栅格数据集时会使用源栅格数据集和目标栅格数据集进行栅格比较,只有在没有指定源栅格数据集的情况下才会使用常数和目标栅格数据集进行比较。
+            </remarks>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IGridAnalystService.NeighbourStatistics(System.String,SuperMap.IS.Utility.NeighbourStatisticsParam)">
+            <summary>
+            邻域统计分析。
+            </summary>
+            <param name="mapName">要进行邻域统计分析的数据所在的地图名称。</param>
+            <param name="neighbourStatisticsParam">邻域统计分析参数。</param>
+            <returns>邻域统计分析结果。</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IGridAnalystService.OverlayStatistics(System.String,SuperMap.IS.Utility.OverlayStatisticsParam)">
+            <summary>
+            栅格分带统计分析。
+            </summary>
+            <param name="mapName">要进行分带统计分析的数据所在的地图名称。</param>
+            <param name="overlayStatisticsParam">分带统计分析参数。</param>
+            <returns>分带统计分析结果。</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IGridAnalystService.GridExecute(System.String,SuperMap.IS.Utility.GridExecuteParam)">
+            <summary>
+            栅格表达式运算。
+            </summary>
+            <param name="mapName">要进行栅格表达式运算的数据所在的地图名称。</param>
+            <param name="gridExecuteParam">栅格表达式运算参数。</param>
+            <returns>栅格表达式运算结果。</returns>
+            <remarks><para>（1）数学表达式应为一个形如下式的字符串：</para>
+            <para>[DatasourceAlias1.Raster1] + [DatasourceAlias2.Raster2] </para>
+            <para>使用“ [数据源别名.数据集名] ”来指定参加运算的栅格数据集；注意要使用方括号把名字括起来。如果栅格计算中有小于零的负值，注意要加小括号，如：</para>
+            <para>[DatasourceAlias1.Raster1] - ([DatasourceAlias2.Raster2])</para>
+            <para>（2）SuperMap中的栅格代数计算支持四则运算符（"+" 、"-" 、"*" 、"/" ）、条件运算符（"&gt;" 、"&gt;=" 、"&lt;" 、"&gt;=" 、"&lt;&gt;" 、"==" ）、逻辑运算符（"|" 、"&amp;" 、"Not()" 、"^" ）
+            和一些常用数学函数（"abs()" 、"acos()" 、"asin()" 、"atan()" 、"acot()" 、"cos()" 、"cosh()" 、"cot()" 、"exp()" 、"floor()" 、"mod(,)" 、"ln()" 、"log()" 、"pow(,)" 、
+            "sin()" 、"sinh()" 、"sqrt()" 、"tan()" 、"tanh()" 、"Isnull()" 、"Con(,,)" ）。</para>
+            <para>（3）代数运算的表达式各个函数之间可以嵌套使用，直接用条件运算符计算的栅格结果都为二值（如大于、小于等），即满足条件的用1代替，不满足的用0代替，
+            若想使用其他值来表示满足条件和不满足条件的取值，可以使用条件提取函数Con(,,)。
+            例如："Con(IsNull([SURFACE_ANALYST.Dem3] ) ,100,Con([SURFACE_ANALYST.Dem3] > 100,[SURFACE_ANALYST.Dem3] ,-9999) ) " ，
+            该表达式的含义是：栅格数据集 Dem3 在别名为 SURFACE_ANALYST 的数据源中，将其中无值栅格变为 100，剩余栅格中，大于100 的，值保持不变，小于等于 100 的，值改成 -9999。</para>
+            </remarks>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IGridAnalystService.GetGridPixelValue(System.String,System.String,SuperMap.IS.Utility.MapCoord)">
+            <summary>
+            获取栅格图层的某一指定地理位置的像素值。
+            </summary>
+            <param name="mapName">删格图层所在的地图名称。</param>
+            <param name="layerName">栅格图层的名称。</param>
+            <param name="position">指定的地理位置，投影坐标系上的坐标对。</param>
+            <returns>指定地理位置的像素值。</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IGridAnalystService.SetGridPixelValue(System.String,System.String,SuperMap.IS.Utility.MapCoord,System.Int32)">
+            <summary>
+            设置栅格图层的某一指定地理位置的像素值。
+            </summary>
+            <param name="mapName">删格图层所在的地图名称。</param>
+            <param name="layerName">栅格图层的名称</param>
+            <param name="position">指定的地理位置，投影坐标系上的坐标对</param>
+            <param name="value">设置的像素值</param>
+            <returns>设置的像素值</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IGridAnalystService.GetGridValue(System.String,System.String,SuperMap.IS.Utility.MapCoord)">
+            <summary>
+            获取栅格图层的某一指定地理位置的栅格值。
+            </summary>
+            <param name="mapName">删格图层所在的地图名称。</param>
+            <param name="layerName">栅格图层的名称。</param>
+            <param name="position">指定的地理位置，投影坐标系上的坐标对。</param>
+            <returns>指定地理位置的栅格值。</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IGridAnalystService.SetGridValue(System.String,System.String,SuperMap.IS.Utility.MapCoord,System.Double)">
+            <summary>
+            设置栅格图层的某一指定地理位置的栅格值。
+            </summary>
+            <param name="mapName">删格图层所在的地图名称。</param>
+            <param name="layerName">栅格图层的名称。</param>
+            <param name="position">指定的地理位置，投影坐标系上的坐标对。</param>
+            <param name="value">设置的指定地理位置的栅格值。</param>
+            <returns>设置的指定地理位置的栅格值。</returns>
+        </member>
+        <member name="T:SuperMap.IS.ServiceInterface.IMetadataService">
+            <summary>
+            元数据服务
+            </summary>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IMetadataService.GetMetadata(SuperMap.IS.Utility.MetadataParam)">
+            <summary>
+            获取元数据
+            </summary>
+            <param name="param">元数据参数</param>
+            <returns>元数据</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IMetadataService.ImportMetadata(SuperMap.IS.Utility.Metadata)">
+            <summary>
+            导入元数据
+            </summary>
+            <param name="metadata">元数据</param>
+            <returns>是否成功</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IMetadataService.QueryMetadata(SuperMap.IS.Utility.MetadataQueryParam,System.Int32)">
+            <summary>
+            元数据查询与统计
+            </summary>
+            <param name="queryParam">查询参数</param>
+            <param name="option">0表示查询,1表示统计</param>
+            <returns>查询结果</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IMetadataService.FlushMetadata(System.String)">
+            <summary>
+            刷新元数据。
+            </summary>
+            <param name="datasource">如果为空，就刷新全部数据源的元数据。</param>
+            <returns></returns>
+        </member>
+        <member name="T:SuperMap.IS.ServiceInterface.ICustomService">
+            <summary>
+            自定义服务对象接口。
+            </summary>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.ICustomService.CustomInvoke(SuperMap.IS.Utility.MapParam)">
+            <summary>
+            根据自定义的参数来执行自定义的操作，主要用于自定义引擎开发。
+            </summary>
+            <param name="mapParam">地图参数</param>
+            <returns>地图结果对象</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.ICustomService.CustomInvoke(SuperMap.IS.Utility.CustomParam)">
+            <summary>
+            根据自定义的参数来执行自定义的操作，主要用于自定义引擎开发。
+            </summary>
+            <param name="customParam">自定义操作参数</param>
+            <returns>自定义操作结果对象</returns>
+        </member>
+        <member name="T:SuperMap.IS.ServiceInterface.IMapService">
+            <summary>
+            地图服务对象接口。
+            </summary>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IMapService.ClearCache">
+            <summary>
+            清除所有地图的缓存。
+            </summary>
+            <returns>操作是否成功。</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IMapService.ClearCache(System.String)">
+            <summary>
+            清除缓存。
+            </summary>
+            <param name="mapName">要清除的缓存所在的地图名。如果为空（null或空字符串），则清除默认地图的缓存。</param>
+            <returns>操作是否成功。</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IMapService.ClearCache(System.String,SuperMap.IS.Utility.MapRect)">
+            <summary>
+            清除某一指定范围的缓存。
+            </summary>
+            <param name="mapName">要清除的缓存所在的地图名。如果为空（null或空字符串），则清除默认地图的缓存。</param>
+            <param name="clearBounds">要清除的缓存的地理范围。</param>
+            <returns>操作是否成功。</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IMapService.GetDefaultMapImage">
+            <summary>
+            取得默认地图。
+            </summary>
+            <returns>地图对象</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IMapService.GetDefaultMapImage(System.String,System.Int32,System.Int32)">
+            <summary>
+            根据地图名称、地图宽度和高度获取默认地图。
+            </summary>
+            <param name="mapName">地图名称</param>
+            <param name="mapWidth">地图宽度</param>
+            <param name="mapHeight">地图高度</param>
+            <returns>地图对象</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IMapService.GetMapImage(SuperMap.IS.Utility.MapParam)">
+            <summary>
+            根据地图参数的描述获取地图。
+            </summary>
+            <param name="mapParam">地图参数</param>
+            <returns>地图对象</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IMapService.GetMapImage(SuperMap.IS.Utility.MapParam,System.Int32)">
+            <summary>
+            根据地图参数的描述获取指定DPI的地图。
+            </summary>
+            <param name="mapParam">地图参数</param>
+            <param name="imageDpi">图像的DPI（每英寸点数）分辨率，默认为200dpi，建议在72－600dpi之间。</param>
+            <returns>地图对象</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IMapService.GetCachedMapImage(SuperMap.IS.Utility.MapParam)">
+            <summary>
+            根据地图参数的描述获取缓存过的地图。
+            </summary>
+            <param name="mapParam">地图参数</param>
+            <returns>地图对象</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IMapService.CheckCachedMapImage(SuperMap.IS.Utility.MapParam)">
+            <summary>
+            检查MapParam中描述的地图是否已经在地图服务中进行了缓存。
+            </summary>
+            <param name="mapParam">通过该参数设置要检验的地图的相关参数，如地图的中心点，比例尺以及显示范围等。</param>
+            <returns>true表示待检查的地图已经进行了缓存。false表示没有缓存。</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IMapService.GetOverview(SuperMap.IS.Utility.Overview)">
+            <summary>
+            获取鹰眼。
+            </summary>
+            <param name="overview">鹰眼参数</param>
+            <returns>鹰眼对象</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IMapService.GetLegend(SuperMap.IS.Utility.MapParam,System.Boolean,System.Int32,System.Int32)">
+            <summary>
+             获取图例。
+            </summary>
+            <param name="mapParam">地图参数</param>
+            <param name="bShowTitle">是否显示标题</param>
+            <param name="bgColorValue">背景颜色值</param>
+            <param name="foreColorValue">前景颜色值</param>
+            <returns>图例图片的 URL 地址</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IMapService.GetLegend(SuperMap.IS.Utility.MapParam,System.Boolean,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            获取图例。
+            </summary>
+            <param name="mapParam">地图参数</param>
+            <param name="bShowTitle">是否显示标题</param>
+            <param name="bgColorValue">背景颜色值</param>
+            <param name="foreColorValue">前景颜色值</param>
+            <param name="picWidth">图例宽度</param>
+            <returns>图例图片的 URL 地址</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IMapService.ViewEntire(System.String,SuperMap.IS.Utility.MapParam)">
+            <summary>
+            根据指定的图层进行全幅显示。
+            </summary>
+            <param name="activeLayer">指定的图层</param>
+            <param name="mapParam">地图参数</param>
+            <returns>地图对象</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IMapService.ViewEntire(System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            根据指定的地图名、图层和控件大小进行全幅显示。
+            </summary>
+            <param name="mapName">地图名称</param>
+            <param name="activeLayer">指定的图层</param>
+            <param name="mapWidth">控件的宽度</param>
+            <param name="mapHeight">控件的高度</param>
+            <returns>地图对象</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IMapService.Zoom(SuperMap.IS.Utility.MapCoord,System.Double,SuperMap.IS.Utility.MapParam)">
+            <summary>
+            根据中心点和缩放比例进行地图缩放。
+            </summary>
+            <param name="center">进行缩放的中心点</param>
+            <param name="ratio">缩放的比例</param>
+            <param name="mapParam">地图参数</param>
+            <returns>地图对象</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IMapService.Zoom(SuperMap.IS.Utility.MapRect,SuperMap.IS.Utility.MapParam)">
+            <summary>
+            按照指定地理坐标范围获取地图。
+            </summary>
+            <param name="wndRect">指定的地理坐标范围</param>
+            <param name="mapParam">地图参数</param>
+            <returns>地图对象</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IMapService.Pan(System.Double,System.Double,SuperMap.IS.Utility.MapParam)">
+            <summary>
+            地图平移。
+            </summary>
+            <param name="offsetX">在横坐标方向的地理坐标偏移量</param>
+            <param name="offsetY">在纵坐标方向的地理坐标偏移量</param>
+            <param name="mapParam">地图参数</param>
+            <returns>地图对象</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IMapService.ViewByBounds(SuperMap.IS.Utility.MapRect,SuperMap.IS.Utility.MapParam)">
+            <summary>
+            按照指定地理坐标范围获取地图。
+            </summary>
+            <param name="windowRect">指定的地理坐标范围</param>
+            <param name="mapParam">地图参数</param>
+            <returns>地图对象</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IMapService.ViewByScale(SuperMap.IS.Utility.MapCoord,System.Double,SuperMap.IS.Utility.MapParam)">
+            <summary>
+            按照指定中心点和比例尺获取地图。
+            </summary>
+            <param name="center">中心点</param>
+            <param name="scale">比例尺</param>
+            <param name="mapParam">地图参数</param>
+            <returns>地图对象</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IMapService.MapCoordToLatLongCoord(SuperMap.IS.Utility.MapCoord[],SuperMap.IS.Utility.PJCoordSysType)">
+            <summary>
+            坐标对变换,从地图坐标变换成经纬度坐标。
+            </summary>
+            <param name="mapCoords">地图坐标数组</param>
+            <param name="pjCoordSysType">地图投影类型</param>
+            <returns>经纬度坐标数组</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IMapService.LatLongCoordToMapCoord(SuperMap.IS.Utility.LatLong[],SuperMap.IS.Utility.PJCoordSysType)">
+            <summary>
+            坐标对变换,从经纬度坐标变换成地图坐标。
+            </summary>
+            <param name="latLongs">经纬度坐标数组</param>
+            <param name="pjCoordSysType">地图投影类型</param>
+            <returns>地图坐标数组</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IMapService.MeasureDistance(SuperMap.IS.Utility.MapCoord[],SuperMap.IS.Utility.Highlight,SuperMap.IS.Utility.MapParam)">
+            <summary>
+            根据一系列的地理坐标点进行沿线距离量算。
+            </summary>
+            <param name="points">地理坐标点数组</param>
+            <param name="highlight">是否高亮显示量算的沿线部分，以及设置高亮风格</param>
+            <param name="mapParam">地图参数</param>
+            <returns>量算结果对象</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IMapService.MeasureArea(SuperMap.IS.Utility.MapCoord[],SuperMap.IS.Utility.Highlight,SuperMap.IS.Utility.MapParam)">
+            <summary>
+            根据一系列的地理坐标点进行面积量算。
+            </summary>
+            <param name="points">地理坐标点数组</param>
+            <param name="highlight">是否高亮显示量算区域，以及设置高亮风格</param>
+            <param name="mapParam">地图参数</param>
+            <returns>量算结果对象</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IMapService.GetResource(SuperMap.IS.Utility.ResourceParam)">
+            <summary>
+            获取资源图片
+            </summary>
+            <param name="resourceParam">资源参数</param>
+            <returns>图片地址</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IMapService.GetTrackingLayerImage(SuperMap.IS.Utility.MapParam)">
+            <summary>
+            根据地图参数获取TrackingLayer的图片
+            </summary>
+            <param name="mapParam">地图参数</param>
+            <returns>MapImage</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IMapService.GetGeometryImage(System.String,SuperMap.IS.Utility.GeometryParam)">
+            <summary>
+            根据几何对象参数获取几何对象图片
+            </summary>
+            <param name="mapName">地图名</param>
+            <param name="geometryParam">几何对象参数</param>
+            <returns>几何对象图片</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IMapService.MakeDefaultDotDensityTheme(System.String,System.String,System.String,SuperMap.IS.Utility.ColorGradientType)">
+            <summary>
+            制作默认点密度专题图
+            </summary>
+            <param name="mapName">地图名</param>
+            <param name="layerName">制作专题图图层名</param>
+            <param name="expression">专题图表达式</param>
+            <param name="colorSet">配色方案</param>
+            <returns>点密度专题图对象</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IMapService.MakeDefaultGraduatedSymbolTheme(System.String,System.String,System.String,SuperMap.IS.Utility.ColorGradientType)">
+            <summary>
+            制作默认等级符号专题图
+            </summary>
+            <param name="mapName">地图名</param>
+            <param name="layerName">制作专题图图层名</param>
+            <param name="expression">专题图表达式</param>
+            <param name="colorSet">配色方案</param>
+            <returns>等级符号专题图对象</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IMapService.MakeDefaultGraphTheme(System.String,System.String,System.String[],SuperMap.IS.Utility.ColorGradientType)">
+            <summary>
+            制作默认统计专题图
+            </summary>
+            <param name="mapName">地图名</param>
+            <param name="layerName">制作专题图图层名</param>
+            <param name="expressions">专题图表达式集合</param>
+            <param name="colorSet">配色方案</param>
+            <returns>统计专题图对象</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IMapService.MakeDefaultRangeTheme(System.String,System.String,System.String,System.Int32,SuperMap.IS.Utility.ColorGradientType)">
+            <summary>
+            制作默认分段专题图
+            </summary>
+            <param name="mapName">地图名</param>
+            <param name="layerName">制作专题图图层名</param>
+            <param name="expression">专题图表达式</param>
+            <param name="breakCount">分级统计专题图的分段点的总数</param>
+            <param name="colorSet">配色方案</param>
+            <returns>分段专题图对象</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IMapService.MakeDefaultUniqueTheme(System.String,System.String,System.String,SuperMap.IS.Utility.ColorGradientType,System.Int32,System.Int32)">
+            <summary>
+            制作默认单值专题图
+            </summary>
+            <param name="mapName">地图名</param>
+            <param name="layerName">图层名</param>
+            <param name="expression">字段表达式</param>
+            <param name="colorSet">配色方案</param>
+            <param name="startSmID">分类类别起始ID</param>
+            <param name="expectCount">单值专题图中所包括的分类类别的数目</param>
+            <returns>单值专题图对象</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IMapService.MakeDefaultGridRangeTheme(System.String,System.String,System.Int32,SuperMap.IS.Utility.ColorGradientType)">
+            <summary>
+            制作默认栅格分段专题图
+            </summary>
+            <param name="mapName">地图名</param>
+            <param name="layerName">制作专题图图层名</param>
+            <param name="breakCount">分级统计专题图的分段点的总数</param>
+            <param name="colorSet">配色方案</param>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IMapService.GetCachedReferBounds(System.String,System.Int32,System.Int32)">
+            <summary>
+            获取地图对应的缓存参考范围。
+            </summary>
+            <param name="mapName">地图名</param>
+            <param name="tileWidth">缓存图片的宽度</param>
+            <param name="tileHeight">缓存图片的高度</param>
+            <returns>缓存参考范围</returns>
+            <remarks>
+            策略： 如果存在相应的 .sci 文件，就读取该文件中的范围，否则，
+            如果在 SuperMapIS.config 文件中有设置，就读取该设置，否则，
+            以当时实际取到的地图范围为准。
+            </remarks>
+        </member>
+        <member name="T:SuperMap.IS.ServiceInterface.IDataService">
+            <summary>
+            地图数据服务对象接口。
+            </summary>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IDataService.ConnectDatasources">
+            <summary>
+            连接工作空间中的所有数据源。
+            </summary>
+            <returns>连接成功返回true，否则返回false</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IDataService.GetWorkspaceInfo(System.String)">
+            <summary>
+            获取工作空间的相关信息。如地图、数据源、数据集等，但不包括具体的图幅信息。
+            </summary>
+            <param name="referMap">用于获取与该地图对应的地理范围信息。</param>
+            <returns>工作空间信息</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IDataService.GetDatasetInfo(SuperMap.IS.Utility.Datasource,SuperMap.IS.Utility.Dataset,System.String)">
+            <summary>
+            获取数据集及其图幅信息。
+            </summary>
+            <param name="datasource">数据源信息。</param>
+            <param name="dataset">数据集信息。</param>
+            <param name="referMap">用于获取与该地图对应的地理范围信息。</param>
+            <returns>获取到的Dataset对象</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IDataService.GetFieldInfo(System.String,System.String,System.String)">
+            <summary>
+            获取字段信息。
+            </summary>
+            <param name="mapName">地图名称</param>
+            <param name="dataset">要获取字段的源数据集标识，形如"数据集名称@数据源别名"，例如：Country@World。</param>
+            <param name="fieldName">要获取的字段名称。</param>
+            <returns>字段信息获取结果</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IDataService.FindNearest(SuperMap.IS.Utility.MapCoord,System.Double,SuperMap.IS.Utility.QueryParam,SuperMap.IS.Utility.MapParam)">
+            <summary>
+            查找距离指定点一定容限内最近的对象。
+            </summary>
+            <remarks>
+            <para>
+            在线图层或面图层中,这里的距离指的从指定事件点到目标对象边线的最短长度。
+            </para>
+            </remarks>
+            <param name="queryPoint">指定的点</param>
+            <param name="maxDistance">容限范围</param>
+            <param name="queryParam">查询参数</param>
+            <param name="mapParam">地图参数</param>
+            <returns>查询结果对象</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IDataService.FindNearestWithBounds(SuperMap.IS.Utility.MapCoord,System.Double,SuperMap.IS.Utility.QueryParam,SuperMap.IS.Utility.MapParam)">
+            <summary>
+            查找距离指定点一定容限内最近的对象。
+            </summary>
+            <remarks>
+            <para>
+            在线图层或面图层中,这里的距离指的从指定事件点到目标对象边线的最短长度。
+            </para>
+            </remarks>
+            <param name="queryPoint">指定的点</param>
+            <param name="maxDistance">容限范围</param>
+            <param name="queryParam">查询参数</param>
+            <param name="mapParam">地图参数</param>
+            <returns>查询结果对象</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IDataService.QueryByDistance(SuperMap.IS.Utility.MapCoord,System.Double,SuperMap.IS.Utility.QueryParam,SuperMap.IS.Utility.MapParam)">
+            <summary>
+            查找距离指定的点一定范围内的几何对象。
+            </summary>
+            <param name="queryPoint">指定的点</param>
+            <param name="distance">查询的距离范围，单位与数据集的坐标单位一致。</param>
+            <param name="queryParam">查询参数</param>
+            <param name="mapParam">地图参数</param>
+            <returns>查询结果对象</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IDataService.QueryByGeometry(SuperMap.IS.Utility.Geometry,SuperMap.IS.Utility.QueryParam,SuperMap.IS.Utility.SpatialQueryMode,SuperMap.IS.Utility.MapParam)">
+            <summary>
+            查询与指定的多边形符合某种空间关系和查询条件的几何对象。
+            </summary>
+            <param name="geometry">多边形几何对象</param>
+            <param name="queryParam">查询参数</param>
+            <param name="mode">空间查询模式，几何对象之间的空间关系枚举常量</param>
+            <param name="mapParam">地图参数</param>
+            <returns>查询结果对象</returns>
+            <remarks>
+            目前支持对点、线、多边形、文本、圆、位图等几何对象的空间查询。
+            </remarks>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IDataService.QuerySql(SuperMap.IS.Utility.QueryParam,SuperMap.IS.Utility.MapParam)">
+            <summary>
+            Sql 查询。
+            </summary>
+            <param name="queryParam">查询参数</param>
+            <param name="mapParam">地图参数</param>
+            <returns>查询结果对象</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IDataService.Find(SuperMap.IS.Utility.QueryParam,SuperMap.IS.Utility.MapParam)">
+            <summary>
+            在全图范围内查找所有几何对象的所有属性字段中与输入字符串完全匹配的记录。
+            </summary>
+            <remarks>
+            该方法是不能指定被查属性字段的。它查找的范围是查询图层中所有字段中的值。
+            其中在查询参数中的 WhereClause 字段直接赋予要查询的匹配的文本值,例如,要查询某一图层所有字段中值为 "China" 的记录,则
+            将对应 QueryLayer 的 WhereClause 字段值设置为 "China"。
+            <para>
+            尤其要注意的是，本查询是字符串完全匹配查询。要进行模糊查询及通配符查询，请使用 Query 相关接口。
+            </para>
+            </remarks>
+            <param name="queryParam">查询参数</param>
+            <param name="mapParam">地图参数</param>
+            <returns>查询结果对象</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IDataService.GetEntity(System.String,System.String,System.Int32)">
+            <summary>
+            根据对象的ID获取对象的坐标信息和属性信息。
+            </summary>
+            <param name="mapName">对象所在的地图名称</param>
+            <param name="layerName">对象所在的图层名称</param>
+            <param name="id">对象的 ID (对应属性表中的 SmID)</param>
+            <returns>对象</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IDataService.GetEntities(System.String,System.String,System.Int32[])">
+            <summary>
+            根据多个对象的ID获取多个对象的坐标信息和属性信息。
+            </summary>
+            <param name="mapName">对象所在的地图名称</param>
+            <param name="layerName">对象所在的图层名称</param>
+            <param name="ids">要获取的多个对象的ID数组</param>
+            <returns>对象数组</returns>
+            <remarks>
+            一次只能获取同一地图同一图层中的多个对象。
+            如果要获取不同地图、不同图层中的多个对象，请重复调用本方法或者 GetEntity 方法。
+            </remarks>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IDataService.GetEntities(System.String,System.String,System.String)">
+            <summary>
+            根据多个对象的SQL筛选条件获取多个对象的坐标信息和属性信息。
+            </summary>
+            <param name="mapName">对象所在的地图名称</param>
+            <param name="layerName">对象所在的图层名称</param>
+            <param name="condition">要获取的多个对象的SQL筛选条件</param>
+            <returns>对象数组</returns>
+            <remarks>
+            一次只能获取同一地图同一图层中的多个对象。
+            如果要获取不同地图、不同图层中的多个对象，请重复调用本方法或者 GetEntity 方法。
+            </remarks>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IDataService.LockLayer(System.String,System.String,System.String)">
+            <summary>
+            锁定图层。
+            </summary>
+            <remarks>
+            <para>
+            执行地图编辑需要通过三个步骤来实现，首先就是通过该属性锁定待编辑的图层，以便其他用户不能同时对该图层数据进行修改，保障数据编辑操作的可靠性。
+            其次通过地图编辑方法（如AddEntity等方法）对空间数据进行编辑，编辑完毕后通过UnlockLayer方法解除编辑图层的锁定，以便其他用户可以
+            执行编辑的操作。
+            </para>
+            <para>
+            使用该方法锁定地图图层的时候需要通过参数clientID指定要执行编辑操作的用户的客户端唯一标识（一个唯一的字符串），
+            地图服务会为该用户返回一个地图编辑的唯一标识，在后续的编辑方法（比如 AddEntity)中
+            需要用到这个地图编辑标识。编辑完毕之后， 使用UnlockLayer方法解锁图层的时候也需要传递这个地图编辑标识。
+            </para>
+            <para>
+            使用该方法对地图图层锁定后，请在地图编辑结束后及时使用UnlockLayer方法对该地图图层进行解锁，否则其他用户将无法对该图层进行后续的编辑操作。
+            </para>
+            </remarks>
+            <param name="mapName">地图名称</param>
+            <param name="layerName">图层名称</param>
+            <param name="clientID">客户端的唯一标识，一个唯一的字符串，以表明用户的唯一性。</param>
+            <returns>返回地图编辑唯一标识。通过该标识可以执行后续的地图编辑和解除图层的操作。</returns>
+            <seealso cref="M:SuperMap.IS.ServiceInterface.IDataService.UnlockLayer(System.String,System.String,System.String)"/>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IDataService.UnlockLayer(System.String,System.String,System.String)">
+            <summary>
+            解除对图层的锁定。 
+            </summary>
+            <param name="mapName">地图名称</param>
+            <param name="layerName">图层名称</param>
+            <param name="userID">地图编辑唯一标识。这个标识是从LockLayer方法中获取到的。</param>
+            <returns>返回解除地图图层的锁定的操作是否成功的标示</returns>
+            <remarks>
+            <para>
+            执行地图编辑需要通过三个步骤来实现，首先就是通过该属性锁定待编辑的图层，以便其他用户不能同时对该图层数据进行修改，保障数据编辑操作的可靠性。
+            其次通过地图编辑方法（如AddEntity，AddLine等方法）对空间数据进行编辑，编辑完毕后通过UnlockLayer方法解除编辑图层的锁定，以便其他用户可以
+            执行编辑的操作。
+            </para>
+            <para>
+            通过UnlockLayer方法解除对图层的锁定的时候需要输入一个地图编辑的唯一标识，这个标识是从LockLayer方法中获取到的。
+            </para>
+            </remarks>
+            <seealso cref="M:SuperMap.IS.ServiceInterface.IDataService.LockLayer(System.String,System.String,System.String)"/>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IDataService.AddEntity(System.String,System.String,SuperMap.IS.Utility.Entity[],System.String)">
+            <summary>
+            在一个图层上增加一组同类型的实体。
+            </summary>
+            <param name="mapName">地图名称。</param>
+            <param name="layerName">图层名称。</param>
+            <param name="targetEntities">要添加的实体数组。</param>
+            <param name="userID">编辑用户唯一标识。进行地图编辑的时候，首先需要通过<see cref="M:SuperMap.IS.ServiceInterface.IDataService.LockLayer(System.String,System.String,System.String)"/>来锁定要编辑的图层，此时会获得一个
+            地图编辑的唯一标识。在使用AddEntity方法添加实体的时候需要输入该地图编辑的唯一标识，否则地图服务不会执行该操作。</param>
+            <returns>编辑结果的信息，其中包含新增实体ID数组信息，添加实体的操作是否成功的信息，此次添加实体所影响到的地图范围。</returns>
+            <remarks>
+            要求在图层中添加相同类型的实体，例如在点图层中必须添加一组点类型的实体。目前该操作只支持点、线、面图层。
+            </remarks>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IDataService.UpdateEntity(System.String,System.String,SuperMap.IS.Utility.Entity[],System.String)">
+            <summary>
+            更新一组实体。
+            </summary>
+            <param name="mapName">地图名称</param>
+            <param name="layerName">图层名称</param>
+            <param name="targetEntities">目标实体</param>
+            <param name="userID">编辑用户唯一标识。进行地图编辑的时候，首先需要通过<see cref="M:SuperMap.IS.ServiceInterface.IDataService.LockLayer(System.String,System.String,System.String)"/>来锁定要编辑的图层，此时会获得一个
+            地图编辑的唯一标识。在使用AddEntity方法添加实体的时候需要输入该地图编辑的唯一标识，否则地图服务不会执行该操作。</param>
+            <returns>编辑结果的信息，其中包含更新的实体ID数组信息，更新实体的操作是否成功的信息，此次更新的实体所影响到的地图范围。</returns>
+            <remarks>目前该操作只支持点、线、面图层。</remarks>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IDataService.DeleteEntity(System.String,System.String,System.Int32[],System.String)">
+            <summary>
+            根据ID，删除一组实体。
+            </summary>
+            <param name="mapName">地图名称。</param>
+            <param name="layerName">图层名称。</param>
+            <param name="IDs">实体的ID数组。</param>
+            <param name="userID">编辑用户唯一标识。在使用DeleteEntity方法添加实体的时候需要输入该地图编辑的唯一标识，否则地图服务不会
+             执行该操作。</param>
+            <returns>编辑结果的信息，其中包含删除的实体ID数组信息，删除实体的操作是否成功的信息，此次删除实体后影响到的地图范围。</returns>
+            <remarks>目前该操作只支持点、线、面图层。</remarks>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IDataService.CopyDataset(System.String,SuperMap.IS.Utility.CopyDatasetParam,System.String)">
+            <summary>
+            复制数据集。
+            </summary>
+            <param name="mapName">地图名称。</param>
+            <param name="copyDatasetParam">数据集复制参数。</param>
+            <param name="userID">编辑用户唯一标识。</param>
+            <returns>数据集复制结果</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IDataService.CopyDataset(System.String,SuperMap.IS.Utility.CopyDatasetParam,SuperMap.IS.Utility.ResultDatasetCopyParam,System.String)">
+            <summary>
+            复制数据集。将源数据集复制成指定参数的结果数据集。
+            </summary>
+            <param name="mapName">地图名称。</param>
+            <param name="copyDatasetParam">设置要复制的源数据集信息以及结果数据集信息。包括数据存储格式类型，如果结果数据集已存在，是否覆盖该数据集，结果数据集标识等。</param>
+            <param name="resultDatasetCopyParam">设置复制数据集需要的相关参数。例如结果数据集的编码方式，矢量数据集复制时是否复制原有的字段索引等。</param>
+            <param name="userID">编辑用户唯一标识。</param>
+            <returns>数据集复制结果。</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IDataService.CreateDataset(System.String,SuperMap.IS.Utility.CreateDatasetParam,System.String)">
+            <summary>
+            创建数据集。
+            </summary>
+            <param name="mapName">地图名称。</param>
+            <param name="createDatasetParam">数据集创建参数。</param>
+            <param name="userID">编辑用户唯一标识。</param>
+            <returns>数据集创建结果。</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IDataService.DeleteDataset(System.String,System.String,System.String)">
+            <summary>
+            删除数据集。
+            </summary>
+            <param name="mapName">地图名称。</param>
+            <param name="dataset">要删除的数据集标识，形如"数据集名称@数据源别名"，例如：Country@World。</param>
+            <param name="userID">编辑用户唯一标识。</param>
+            <returns>数据集删除结果。</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IDataService.CopyField(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            复制字段。
+            </summary>
+            <param name="mapName">地图名称</param>
+            <param name="dataset">要复制字段的源数据集标识，形如"数据集名称@数据源别名"，例如：Country@World。</param>
+            <param name="sourceFieldName">源字段名称。</param>
+            <param name="targetFieldName">目标字段名称。</param>
+            <param name="userID">编辑用户唯一标识</param>
+            <returns>字段操作结果</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IDataService.CreateField(System.String,System.String,SuperMap.IS.Utility.Field,System.Boolean,System.String)">
+            <summary>
+            创建字段。
+            </summary>
+            <param name="mapName">地图名称</param>
+            <param name="dataset">要创建字段的源数据集标识，形如"数据集名称@数据源别名"，例如：Country@World。</param>
+            <param name="field">要创建的字段信息对象</param>
+            <param name="overwriteIfExists">是覆盖已存在的字段</param>
+            <param name="userID">编辑用户唯一标识</param>
+            <returns>字段操作结果</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IDataService.DeleteField(System.String,System.String,System.String,System.String)">
+            <summary>
+            删除字段。
+            </summary>
+            <param name="mapName">地图名称</param>
+            <param name="dataset">要删除字段的源数据集标识，形如"数据集名称@数据源别名"，例如：Country@World。</param>
+            <param name="fieldName">要删除的字段名称</param>
+            <param name="userID">编辑用户唯一标识</param>
+            <returns>字段操作结果</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IDataService.SetField(System.String,System.String,System.String,SuperMap.IS.Utility.Field,System.String)">
+            <summary>
+            设置字段。对指定数据源里的某字段进行修改，支持字段类型和精度等的修改。
+            </summary>
+            <param name="mapName">地图名称</param>
+            <param name="dataset">要设置字段的源数据集标识，形如"数据集名称@数据源别名"，例如：Country@World。</param>
+            <param name="fieldName">要设置的字段名称</param>
+            <param name="field">要设置的字段信息对象</param>
+            <param name="userID">编辑用户唯一标识</param>
+            <returns>字段操作结果</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IDataService.UpdateFieldValues(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            更新字段。
+            </summary>
+            <param name="mapName">地图名称</param>
+            <param name="dataset">要更新字段的源数据集标识，形如"数据集名称@数据源别名"，例如：Country@World。</param>
+            <param name="fieldName">要更新的字段名称</param>
+            <param name="expression">指定的表达式</param>
+            <param name="filter">要更新记录的查询条件，如果为空字符串，则更新表中所有的记录。</param>
+            <param name="userID">编辑用户唯一标识</param>
+            <returns>字段操作结果</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IDataService.OpenDatasource(SuperMap.IS.Utility.DatasourceParam)">
+            <summary>
+            打开数据源
+            </summary>
+            <param name="datasourceParam">数据源参数</param>
+            <returns>打开数据源是否成功</returns>
+            
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IDataService.CloseDatasource(System.String)">
+            <summary>
+            关闭数据源
+            </summary>
+            <param name="alias">数据源别名</param>
+            <returns>关闭数据源是否成功</returns>        
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IDataService.RefreshDatasource">
+            <summary>
+            刷新数据源
+            </summary>
+            <returns>刷新数据源是否成功</returns>
+            <remarks>
+            对数据源进行了一些操作，比如删除、增加了一个数据集后，需要对该数据源进行刷新。
+            </remarks>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IDataService.GetExternalTableFieldInfos(System.String,System.String)">
+            <summary>
+            获取当前数据源所在的数据库表空间中某外挂表的字段信息。
+            </summary>
+            <param name="strTableName">外挂表的名称。</param>
+            <param name="datasourceName">数据源名称。</param>
+            <returns>外挂表字段信息获取结果对象。</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IDataService.GetExternalTableNames(System.String)">
+            <summary>
+            获取当前数据源中的所有外挂表集合。
+            </summary>
+            <param name="datasourceName">当前数据源名。</param>
+            <returns>获取当前数据源中所有外挂表集合结果对象。</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IDataService.AddExternalTable(System.String,System.String,System.String,System.String)">
+            <summary>
+            打开数据库中非 SDX+ 管理的表（外挂表）。外挂表打开之后，在 SuperMap Deskpro 或者 Objects 中将显示为外挂表数据集。
+            </summary>
+            <param name="strTableName">数据库中已存在的外挂表名。</param>
+            <param name="strDTName ">外挂表数据集的名称。</param>
+            <param name="datasourceName">当前数据源名。</param>
+            <param name="userID">编辑用户唯一标识。</param>
+            <returns>外挂表操作结果对象。</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IDataService.RemoveExternalTable(System.String,System.String,System.String)">
+            <summary>
+            从当前数据源中移除外挂表数据集。
+            </summary>
+            <param name="strDTName ">当前数据源中已存在的外挂表数据集的名称。</param>
+            <param name="datasourceName">当前数据源名。</param>
+            <param name="userID">编辑用户唯一标识。</param>
+            <returns>外挂表操作结果对象。</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IDataService.RegisterExternalTable(System.String,System.String,System.Boolean,System.String)">
+            <summary>
+            注册外挂表数据集为 SDX+ 管理的 Tabular (纯属性表)数据集。
+            </summary>
+            <param name="strDTName">当前数据源中已存在的外挂表数据集的名称。</param>
+            <param name="datasourceName">当前数据源名。</param>
+            <param name="bCreateSmID ">是否创建 SmID 字段。</param>
+            <param name="userID">编辑用户唯一标识。</param>
+            <returns>外挂表操作结果对象。</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IDataService.UnRegisterExternalTable(System.String,System.String,System.String)">
+            <summary>
+            反注册数据源中的 Tabular(纯属性表) 数据集，使之成为非 SDX+ 管理的表。
+            </summary>
+            <param name="strDTName ">纯属性表（Tabular）数据集的名称。</param>
+            <param name="datasourceName">当前数据源名。</param>
+            <param name="userID">编辑用户唯一标识。</param>
+            <returns>外挂表操作结果对象。</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IDataService.EPSGToSuperMap(System.Int32)">
+            <summary>
+            转换 EPSG 坐标系的编码为 SuperMap 对应的编码。如果没有对应的坐标系编码，返回-1000。
+            </summary>
+            <param name="nEPSGCode">EPSG 坐标系的编码</param>
+            <returns>SuperMap 坐标系的编码</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IDataService.SuperMapToEPSG(System.Int32)">
+            <summary>
+            转换 SuperMap 坐标系的编码为 EPSG 对应的编码。如果没有对应的坐标系编码，返回-1000。 
+            </summary>
+            <param name="nSuperMapCode">SuperMap 坐标系的编码</param>
+            <returns>EPSG 坐标系的编码</returns>
+        </member>
+        <member name="T:SuperMap.IS.ServiceInterface.IAnalyst3DService">
+            <summary>
+            三维分析服务
+            </summary>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IAnalyst3DService.Flood(SuperMap.IS.Utility.FloodParam,SuperMap.IS.Utility.MapParam)">
+            <summary>
+            根据三维地形和水位高度，计算淹没的区域。
+            </summary>
+            <param name="floodParam">淹没范围分析参数。
+            <para>通过该对象设置淹没分析所需要的参数，如淹没高度（<see cref="F:SuperMap.IS.Utility.FloodParam.Height"/>），要计算的三维地形的数据集标识（<see cref="F:SuperMap.IS.Utility.FloodParam.Dataset"/>），形如 数据集名@数据源名 。</para>
+            <para>如果只需要计算三维地形某个区域内的淹没范围，可以通过<see cref="F:SuperMap.IS.Utility.FloodParam.Region"/>指定。</para>
+            </param>
+            <param name="mapParam">地图</param>
+            <returns>淹没范围分析结果</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IAnalyst3DService.CutFill(System.String,SuperMap.IS.Utility.CutFillParam)">
+            <summary>
+            填方和挖方计算。
+            </summary>
+            <param name="mapName">要进行填方和挖方计算的数据所在地图名称。</param>
+            <param name="cutFillParam">填方和挖方计算参数。</param>
+            <returns>填方和挖方计算结果。</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IAnalyst3DService.CalculateViewShed(System.String,SuperMap.IS.Utility.CalculateViewShedParam)">
+            <summary>
+            计算可视域。
+            </summary>
+            <param name="mapName">要进行视域分析的数据所在地图名称。</param>
+            <param name="calculateViewShedParam">视域分析参数。</param>
+            <returns>视域分析结果。</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IAnalyst3DService.Aspect(System.String,SuperMap.IS.Utility.AspectParam)">
+            <summary>
+            坡向计算。
+            </summary>
+            <param name="mapName">要进行坡向计算的数据所在地图名称。</param>
+            <param name="aspectParam">坡向计算参数。</param>
+            <returns>坡向计算结果。如果坡向计算成功，将返回生成的坡向图的数据集名称。</returns>
+            <remarks>坡向是指坡面的朝向，它表示地形表面某处最陡的下坡方向。坡向以度为单位，按顺时针方向从0度（正北方向）到360度来度量。
+            通常被计算坡度的栅格，用周围的邻域单元的栅格值来参与运算。水平的坡没有方向，被赋值为-1。
+            </remarks>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IAnalyst3DService.Slope(System.String,SuperMap.IS.Utility.SlopeParam)">
+            <summary>
+            坡度计算。
+            </summary>
+            <param name="mapName">要进行坡度计算的数据所在地图名称。</param>
+            <param name="slopeParam">坡度计算参数。</param>
+            <returns>坡度计算结果。</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IAnalyst3DService.SurfaceArea(System.String,SuperMap.IS.Utility.SurfaceAreaParam)">
+            <summary>
+            计算指定区域在 DEM 上的表面积。 
+            </summary>
+            <param name="mapName">要进行计算的数据所在地图名称。</param>
+            <param name="surfaceAreaParam">三维表面积计算参数。</param>
+            <returns>三维表面积。</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IAnalyst3DService.SurfaceLength(System.String,SuperMap.IS.Utility.SurfaceLengthParam)">
+            <summary>
+            计算指定二维线在 DEM 上的表面长度。 
+            </summary>
+            <param name="mapName">要进行计算的数据所在地图名称。</param>
+            <param name="surfaceLengthParam">栅格表面长度计算参数。</param>
+            <returns>栅格表面长度。</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IAnalyst3DService.IsVisible(System.String,SuperMap.IS.Utility.IsVisibleParam)">
+            <summary>
+            判断 DEM 上两点之间的通视性。返回true，表示两点通视；否则表示两点不通视。
+            </summary>
+            <remarks>该方法可以同时判断多个点之间的通视情况。设置方法如下：
+            <para>1、通过<see cref="F:SuperMap.IS.Utility.IsVisibleParam.Points"/>设置要分析的点对象，如point1，point2，point3。</para>
+            <para>2、设置DEM数据集名称-<see cref="F:SuperMap.IS.Utility.IsVisibleParam.Dataset"/>。</para>
+            <para>通过该方法获取的结果为<see cref="T:SuperMap.IS.Utility.IsVisibleResult"/>对象，两点间的通视性可以通过<see cref="F:SuperMap.IS.Utility.IsVisibleResult.Succeeds"/>获取。</para>
+            <para>如：<see cref="F:SuperMap.IS.Utility.IsVisibleResult.Succeeds"/>[0] 代表 point1和point2之间的通视性。</para>
+            <para>    <see cref="F:SuperMap.IS.Utility.IsVisibleResult.Succeeds"/>[1] 代表 point2和point3之间的通视性。</para>
+            <para>    <see cref="F:SuperMap.IS.Utility.IsVisibleResult.Succeeds"/>[2] 代表 point1和point3之间的通视性。</para>
+            </remarks>
+            <param name="mapName">要进行通视分析的数据所在地图名称。</param>
+            <param name="isVisibleParam">通视分析参数。</param>
+            <returns>通视分析结果。</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IAnalyst3DService.SurfaceProfile(System.String,SuperMap.IS.Utility.SurfaceProfileParam)">
+            <summary>
+            栅格表面剖面线计算。
+            </summary>
+            <param name="mapName">要进行栅格表面剖面线计算的数据所在地图名称。</param>
+            <param name="surfaceProfileParam">栅格表面剖面线计算参数。</param>
+            <returns>栅格表面剖面线计算结果。</returns>
+            <remarks>
+            剖面线：平面上的折线在地形表面上的投影线，即剖面图表达的是给定线要素上每一点距起点的距离（作为横坐标）及其高程（作为纵坐标）
+            构成的剖面线。 
+            </remarks>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IAnalyst3DService.Basin(System.String,SuperMap.IS.Utility.BasinParam)">
+            <summary>
+            划分流域盆地计算。输入栅格的每个像素都会被分配一个唯一的盆地。结果保存在数据集中。
+            </summary>
+            <param name="mapName">要进行划分流域盆地计算的数据所在地图名称。</param>
+            <param name="basinParam">划分流域盆地计算参数。</param>
+            <returns>划分流域盆地计算结果。</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IAnalyst3DService.WaterShed(System.String,SuperMap.IS.Utility.WaterShedParam)">
+            <summary>
+            按照指定条件计算流域汇水盆地。
+            </summary>
+            <param name="mapName">要按照指定条件计算流域汇水盆地计算的数据所在地图名称。</param>
+            <param name="waterShedParam">按照指定条件计算流域汇水盆地参数。</param>
+            <returns>按照指定条件计算流域汇水盆地结果。</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IAnalyst3DService.FillSink(System.String,SuperMap.IS.Utility.FillSinkParam)">
+            <summary>
+            填充伪洼地。
+            </summary>
+            <param name="mapName">要进行填充伪洼地计算的数据所在地图名称。</param>
+            <param name="fillSinkParam">填充伪洼地计算参数。</param>
+            <returns>填充伪洼地计算结果。</returns>
+            <remarks>1.洼地区域是水流方向不合理的地方，可以通过流向来判断洼地，并进行填充。一般，洼地分为两种情况，一种是地表真实形态的反映，
+            如冰川或喀斯特地貌，另外一种是数据处理造成的误差。在填充之前计算洼地，有助于了解哪些区域将被填充。
+            <para>2.填充洼地通常是进行合理流向计算的前提，如果地形数据中存在一些类似“深沟”的像元，周围的高程值都高于该像元的值，那么它的流向将不易被确定。</para>
+            </remarks>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IAnalyst3DService.FlowDirection(System.String,SuperMap.IS.Utility.FlowDirectionParam)">
+            <summary>
+            流向分析。
+            </summary>
+            <param name="mapName">要进行流向分析计算的数据所在地图名称。</param>
+            <param name="flowDirectionParam">流向分析计算参数。</param>
+            <returns>流向分析计算结果。</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IAnalyst3DService.FlowAccumulation(System.String,SuperMap.IS.Utility.FlowAccumulationParam)">
+            <summary>
+            累积汇水量。
+            </summary>
+            <param name="mapName">要进行累积汇水量计算的数据所在地图名称。</param>
+            <param name="flowAccumulationParam">累积汇水量计算参数。</param>
+            <returns>累积汇水量计算结果。</returns>
+        </member>
+        <member name="T:SuperMap.IS.ServiceInterface.ISpatialAnalystService">
+            <summary>
+            地图空间分析服务对象接口。
+            </summary>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.ISpatialAnalystService.BufferQuery(SuperMap.IS.Utility.BufferParam,SuperMap.IS.Utility.QueryParam,SuperMap.IS.Utility.MapParam)">
+            <summary>
+            缓冲查询分析方法。
+            </summary>     
+            <param name="bufferParam">必选，<see cref="T:SuperMap.IS.Utility.BufferParam"/>类型。通过该参数对象设置与缓冲区相关的信息，例如指定要做
+            缓冲区的几何对象，设置缓冲区的半径，设置制作出的缓冲区在地图上的显示风格。</param>
+            <param name="queryParam">必选，<see cref="T:SuperMap.IS.Utility.QueryParam"/>类型。通过该参数对象设置查询相关的参数，例如设置要查询哪个图层的记录，
+            设置查询条件，设置查询结果在地图上的显示风格。</param>
+            <param name="mapParam">地图的相关参数信息。</param>
+            <returns>缓冲区分析查询的结果。</returns>
+            <remarks>
+            <para>
+            缓冲查询分析是在点、线和多边形实体周围按照缓冲的距离条件自动建立缓冲区域，并且将该缓冲区域与待查询的图层按照一定
+            空间关系和属性条件进行叠置分析，得到符合条件的几何对象（记录）。缓冲查询分析方法经常会应用在工程应用中，
+            例如，在环境治理工程中，常在污染的河流周围划出一定宽度的范围表示受到污染的区域，通过该方法查询到的在该污染区内的
+            居民就需要搬迁；又如在飞机场，常根据健康需要在周围划分出一定范围的区域作为非居住区，那么如果在该区域内查询出有居民区，
+            那么这些居民区的住户就需要拆迁，等等。
+            </para>
+            <para>
+            要进行缓冲区查询分析，首先需要通过 SuperMap.IS.Utility.BufferParam 对象设置与缓冲区相关的参数，例如指定要做缓冲区的几何对象，
+            设置缓冲区的半径，设置制作出的缓冲区在地图上的显示风格，关于 BufferParam 对象的说明请参见<see cref="T:SuperMap.IS.Utility.BufferParam"/>。
+            </para>
+            <para>
+            设置与缓冲区相关的信息后，还需要通过 SuperMap.IS.Utility.QueryParam 对象设置查询相关的参数，例如设置要查询哪个图层的记录，
+            设置查询条件，设置查询结果在地图上的显示风格，关于 QueryParam 对象的说明请参见<see cref="T:SuperMap.IS.Utility.QueryParam"/>。
+            </para>
+            </remarks>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.ISpatialAnalystService.BufferQuery(SuperMap.IS.Utility.BufferParam,SuperMap.IS.Utility.QueryParam,SuperMap.IS.Utility.MapParam,SuperMap.IS.Utility.Highlight)">
+            <summary>
+            缓冲查询分析方法。
+            </summary>     
+            <param name="bufferParam">必选，<see cref="T:SuperMap.IS.Utility.BufferParam"/>类型。通过该参数对象设置与缓冲区相关的信息，例如指定要做
+            缓冲区的几何对象，设置缓冲区的半径，设置制作出的缓冲区在地图上的显示风格。</param>
+            <param name="queryParam">必选，<see cref="T:SuperMap.IS.Utility.QueryParam"/>类型。通过该参数对象设置查询相关的参数，例如设置要查询哪个图层的记录，
+            设置查询条件，设置查询结果在地图上的显示风格。</param>
+            <param name="mapParam">地图的相关参数信息。</param>
+            <param name="bufferSourceHighlight">缓冲源对象高亮参数。</param>
+            <returns>缓冲区分析查询的结果。</returns>
+            <remarks>
+            <para>
+            缓冲查询分析是在点、线和多边形实体周围按照缓冲的距离条件自动建立缓冲区域，并且将该缓冲区域与待查询的图层按照一定
+            空间关系和属性条件进行叠置分析，得到符合条件的几何对象（记录）。缓冲查询分析方法经常会应用在工程应用中，
+            例如，在环境治理工程中，常在污染的河流周围划出一定宽度的范围表示受到污染的区域，通过该方法查询到的在该污染区内的
+            居民就需要搬迁；又如在飞机场，常根据健康需要在周围划分出一定范围的区域作为非居住区，那么如果在该区域内查询出有居民区，
+            那么这些居民区的住户就需要拆迁，等等。
+            </para>
+            <para>
+            要进行缓冲区查询分析，首先需要通过 SuperMap.IS.Utility.BufferParam 对象设置与缓冲区相关的参数，例如指定要做缓冲区的几何对象，
+            设置缓冲区的半径，设置制作出的缓冲区在地图上的显示风格，关于 BufferParam 对象的说明请参见<see cref="T:SuperMap.IS.Utility.BufferParam"/>。
+            </para>
+            <para>
+            设置与缓冲区相关的信息后，还需要通过 SuperMap.IS.Utility.QueryParam 对象设置查询相关的参数，例如设置要查询哪个图层的记录，
+            设置查询条件，设置查询结果在地图上的显示风格，关于 QueryParam 对象的说明请参见<see cref="T:SuperMap.IS.Utility.QueryParam"/>。
+            </para>
+            </remarks>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.ISpatialAnalystService.BufferQuery(SuperMap.IS.Utility.Geometry[],SuperMap.IS.Utility.BufferQueryParam,SuperMap.IS.Utility.MapParam)">
+            <summary>
+            根据几何对象进行缓冲查询分析的方法。
+            </summary>
+            <param name="geometries">缓冲几何对象。</param>
+            <param name="bufferQueryParam">必选，<see cref="T:SuperMap.IS.Utility.BufferQueryParam"/>类型。通过该参数对象设置与缓冲查询分析相关的参数。</param>
+            <param name="mapParam">地图的相关参数信息。</param>
+            <returns>缓冲分析查询结果。</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.ISpatialAnalystService.BufferQuery(SuperMap.IS.Utility.QueryLayer,SuperMap.IS.Utility.BufferQueryParam,SuperMap.IS.Utility.MapParam)">
+            <summary>
+            根据图层进行缓冲分析的方法。
+            </summary>
+            <param name="layer">必选，<see cref="T:SuperMap.IS.Utility.QueryLayer"/>缓冲图层。</param>
+            <param name="bufferQueryParam">必选，<see cref="T:SuperMap.IS.Utility.BufferQueryParam"/>类型。通过该参数对象设置与缓冲查询分析相关的参数。</param>
+            <param name="mapParam">地图的相关参数信息。</param>
+            <returns>缓冲分析查询结果。</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.ISpatialAnalystService.SpatialOperate(SuperMap.IS.Utility.Geometry,SuperMap.IS.Utility.Geometry,SuperMap.IS.Utility.SpatialOperationType)">
+            <summary>
+            使用几何对象 param 对几何对象 source 进行空间运算，如相交、相并、相减、对称差、裁减等运算。
+            </summary>
+            <remarks>
+            <para>
+            几何对象的空间运算是指对几何对象 source 进行相交、合并等操作。</para>
+            <para>相交、合并、裁减等操作被称为运算因子（空间操作类型）。</para>
+            <para>几何对象 source 称作被操作对象，几何对象 param 称作操作对象。</para>
+            <para>用操作对象去对被操作对象进行空间运算，从而得到一个新的几何对象，这个新的几何对象
+            就是对被操作对象的运算结果。</para>
+            <para>
+            具体空间运算的含义参见<see cref="T:SuperMap.IS.Utility.SpatialOperationType"/>中的各个枚举值的说明。
+            </para>
+            </remarks>
+            <param name="source">进行空间运算的被操作的几何对象。</param>
+            <param name="param">进行空间运算的操作的几何对象。</param>
+            <param name="operation">空间运算因子，即要进行了空间操作类型，如裁减 Clip，求并 Union，等</param>
+            <returns>返回对被操作对象进行空间运算后生成的运算结果，该结果是一个几何对象。</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.ISpatialAnalystService.OverlayAnalyst(System.String,SuperMap.IS.Utility.OverlayParam)">
+            <summary>
+            叠加分析。
+            </summary>
+            <remarks>
+            <para>
+            叠加分析是指在两个数据集之间进行的一系列集合运算，是GIS中的一项非常重要的空间分析功能。</para>
+            <para>比如，我们需要了解某一个行政区内的土壤分布情况，我们就根据全国的土地利用图和行政区规划图这两个数据集进行叠加分析，
+            然后得到我们需要的结果，从而进行各种分析评价。 </para>
+            <para>叠加分析涉及到两个数据集，其中一个数据集为操作数据集，必须为面数据集，另一个数据集为被操作数据集，
+            除合并运算和对称差运算必须是面数据集外，其他运算可以是点、线、面或者复合数据集。可以进行点与面的叠加、
+            线与面的叠加、多边形与面的叠加。
+            </para>
+            </remarks>
+            <param name="mapName">进行叠加分析的数据所在的地图名称。</param>
+            <param name="param">叠加分析参数。</param>
+            <returns>叠加分析结果。</returns>
+        </member>
+        <member name="T:SuperMap.IS.ServiceInterface.IServerManager">
+            <summary>
+            服务器管理对象，提供远程修改服务器的属性，比如监听端口，和其他服务器的交互的接口。
+            </summary>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IServerManager.ListServers">
+            <summary>
+            返回所有的应用服务器对象数组。
+            </summary>
+            <returns>服务器对象数组。</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IServerManager.GetServer(System.String)">
+            <summary>
+            根据名字返回应用服务器对象。
+            </summary>
+            <param name="serverName">服务器 Name 。</param>
+            <returns>服务器对象</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IServerManager.GetServer(System.Int32)">
+            <summary>
+            根据ID返回应用服务器对象。
+            </summary>
+            <param name="ID">服务器 ID 。</param>
+            <returns>服务器对象</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IServerManager.LogonCluster">
+            <summary>
+            登陆群集服务器。
+            </summary>
+            <returns>如果登陆成功，则为true；否则返回false。</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IServerManager.LogoutCluster">
+            <summary>
+            从服务注销。
+            </summary>
+            <returns>如果注销成功，则为true；否则返回false。</returns>
+        </member>
+        <member name="P:SuperMap.IS.ServiceInterface.IServerManager.PrimeClusterMachine">
+            <summary>
+            主群集服务器URI。
+            </summary>
+        </member>
+        <member name="P:SuperMap.IS.ServiceInterface.IServerManager.PrimeClusterPort">
+            <summary>
+            主群集服务器Port。
+            </summary>
+        </member>
+        <member name="P:SuperMap.IS.ServiceInterface.IServerManager.SecondClusterMachine">
+            <summary>
+            次群集服务器URI。
+            </summary>
+        </member>
+        <member name="P:SuperMap.IS.ServiceInterface.IServerManager.SecondClusterPort">
+            <summary>
+            次群集服务器Port。
+            </summary>
+        </member>
+        <member name="T:SuperMap.IS.ServiceInterface.IServicePool">
+            <summary>
+            接口IServicePool声明Service对象池。
+            </summary>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IServicePool.GetServiceObject">
+            <summary>
+            提取缺省服务远程对象。
+            </summary>
+            <returns>服务远程对象</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IServicePool.GetServiceObject(System.String)">
+            <summary>
+            根据服务对象名称（唯一标识）提取远程对象。
+            </summary>
+            <param name="serviceObjectName">对象名称（唯一标识）</param>
+            <returns>服务远程对象</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IServicePool.ValidateService">
+            <summary>
+            获取有效服务对象列表。
+            </summary>
+            <returns>有效服务对象列表</returns>
+        </member>
+        <member name="P:SuperMap.IS.ServiceInterface.IServicePool.ActiveServiceObjectCount">
+            <summary>
+            获取当前激活对象（正在处理的对象和队列中等待对象）的数目。
+            </summary>
+        </member>
+        <member name="T:SuperMap.IS.ServiceInterface.INetworkAnalystService">
+            <summary>
+            网络分析服务对象接口。
+            </summary>
+            <remarks>
+            现实世界中的网络模型大致可分为交通网络和公共设施网络（有向）。在本接口中提供了
+            应用于网络数据的路径分析、公交分析、服务区分析、最近设施查找、资源分配、选址分
+            区、物流配送及追踪分析等功能。
+            </remarks>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.INetworkAnalystService.FindPath(SuperMap.IS.Utility.MapCoord[],SuperMap.IS.Utility.RouteParam,SuperMap.IS.Utility.MapParam)">
+            <summary>
+            最短与最佳路径分析，根据坐标数组。
+            </summary>
+            <param name="mapCoords">关键点坐标数组</param>
+            <param name="routeParam">路径分析参数</param>
+            <param name="mapParam">地图参数</param>
+            <returns>分析结果</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.INetworkAnalystService.FindPath(System.Int32[],SuperMap.IS.Utility.RouteParam,SuperMap.IS.Utility.MapParam)">
+            <summary>
+            最短与最佳路径分析，根据路由节点的ID数组。
+            </summary>
+            <param name="keyIDs">路由节点ID数组</param>
+            <param name="routeParam">路径分析参数</param>
+            <param name="mapParam">地图参数</param>
+            <returns>分析结果</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.INetworkAnalystService.ClosestFacility(SuperMap.IS.Utility.MapCoord,SuperMap.IS.Utility.ProximityParam,SuperMap.IS.Utility.MapParam)">
+            <summary>
+            最近设施分析。
+            </summary>
+            <remarks>
+            <para>
+            最近设施分析是查找某一类地物中哪个（或哪些）地物对象与某一指定事件点之间具有最优行走路线的一种空间分析方法。这里指的最优路线是指网络图层中的
+            道路路线，并且是根据<see cref="F:SuperMap.IS.Utility.ProximityParam.NetworkParams">
+            ProximityParam.NetworkParams</see>设置网络分析的参数，包括设置路线通行的阻力（如距离、时间等）等。
+            例如查找距离天安门（事件点）最近的银行的位置，这种需求就可以通过最近设施分析进行查找。
+            </para>
+            <para>
+            需要注意的是，进行最近设施分析的空间数据中必须有网络图层。
+            </para>
+            <para>
+            进行最近设施分析需要利用<see cref="T:SuperMap.IS.Utility.ProximityParam">SuperMap.IS.Utility.ProximityParam类</see>设置分析条件。
+            包括设置网络分析参数<see cref="F:SuperMap.IS.Utility.ProximityParam.NetworkParams"/>、
+            待查询的设施图层<see cref="F:SuperMap.IS.Utility.ProximityParam.FacilityLayer"/>等。
+            </para>
+            <para>
+            最近设施分析的结果通过<see cref="T:SuperMap.IS.Utility.ProximityResult">SuperMap.IS.Utility.ProximityResult</see>来获取，最近设施分析的结果主要分为两个部分，
+            首先就是最近路线的地图描述
+            <see cref="F:SuperMap.IS.Utility.ProximityResult.MapResult">SuperMap.IS.Utility.ProximityResult.MapResult</see>，
+            第二部分就是查找出的最近设施点的记录集<see cref="F:SuperMap.IS.Utility.ProximityResult.ReturnRecordset">SuperMap.IS.Utility.ProximityResult.ReturnRecordset</see>。
+            </para>
+            </remarks>
+            <param name="eventPoint">事件点，比如要查找距离天安门最近的银行的位置，那么天安门就是事件点。</param>
+            <param name="proximityParam">最近设施分析参数，包括要查找的设施点的点数、查询范围对应的最大半径、是否高亮显示分析效果图等。</param>
+            <param name="mapParam">地图参数</param>
+            <returns>返回的最近设施分析的结果，包括查询到的最近设施点的记录等。</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.INetworkAnalystService.FuzzyFindStop(System.String,SuperMap.IS.Utility.MapParam)">
+            <summary>
+            根据站名模糊查询站点集合。
+            </summary>
+            <param name="fuzzyStopName">站点的模糊名，可以为空字符串。</param>
+            <param name="mapParam">地图参数</param>
+            <returns>站点集合</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.INetworkAnalystService.FuzzyFindBusLine(System.String,SuperMap.IS.Utility.MapParam)">
+            <summary>
+            根据线路的名称模糊查询公交线路集合。
+            </summary>
+            <param name="fuzzyBusLineName">线路的模糊名，可以为空字符串。</param>
+            <param name="mapParam">地图参数</param>
+            <returns>线路集合</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.INetworkAnalystService.GetBusLinesByStopID(System.Int32,SuperMap.IS.Utility.MapParam)">
+            <summary>
+            查询经过指定的某个公交站点的所有公交线路的集合。
+            </summary>
+            <param name="interchangeID">公交站点数据集中待查站点的SmUserID的值。</param>
+            <param name="mapParam">地图参数</param>
+            <returns>返回经过指定的公交站点的所有公交线路的集合。</returns>        
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.INetworkAnalystService.GetBusLinesByStopName(System.String,SuperMap.IS.Utility.MapParam)">
+            <summary>
+            查询经过指定站名的线路集合,站点名称精确匹配。
+            </summary>
+            <param name="stopName">站点的名称</param>
+            <param name="mapParam">地图参数</param>
+            <returns>返回经过该站点的所有的线路集合。</returns>  
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.INetworkAnalystService.GetBusLine(System.Int32,SuperMap.IS.Utility.MapParam)">
+            <summary>
+            查询出指定SmID的线路
+            </summary>
+            <param name="busLineID">待查公交线路的SmID的值。</param>
+            <param name="mapParam">地图参数</param>
+            <returns>返回SmID为指定值的公交线路对象。</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.INetworkAnalystService.GetBusStop(System.Int32,SuperMap.IS.Utility.MapParam)">
+            <summary>
+            根据站点SmID查找站点。
+            </summary>
+            <param name="busStopID">待查公交站点的SmID的值。</param>
+            <param name="mapParam">地图参数</param>
+            <returns>返回SmID为指定值的公交站点对象。</returns>        
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.INetworkAnalystService.GetFollowingStops(System.Int32,System.Boolean,SuperMap.IS.Utility.MapParam)">
+            <summary>
+            查询指定公交线路的所有站点集合。
+            </summary>
+            <param name="buslineID">公交线路的SmUserId。</param>
+            <param name="bForward">设置一个值,该值表示是否该线路为上行/内环/小环线路。
+            对于往返线路相同的公交来说，该参数设置为true或者false都可以。
+            </param>
+            <param name="mapParam">地图参数</param>
+            <returns>返回指定的公交线路的所有的站点集合。</returns>
+            <remarks>
+            使用该方法可以获取某条公交线路途径的所有站点。由于有些公交线路往返路线不相同，因此公交线路的数据中有
+            一个专门的字段用来描述线路的特性的，如上行/下行，内环/外环，大环/小环。通常规定上行/内环/小环线路为forward
+            方向。下行/外环/大环为backward方向。因此使用该方法时需要指明查询的公交线路的方向是否是forward方向，即
+            使用该方法的第二个参数进行设置。对于往返线路相同的公交来说，该方法的第二个参数设置为true或者false都可以。
+            </remarks>         
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.INetworkAnalystService.GetBusSolution(System.Int32,System.Int32,SuperMap.IS.Utility.BusSolutionParam,SuperMap.IS.Utility.MapParam)">
+            <summary>
+            根据起始和终点站点的SmUserID查询公交换乘方案。
+            </summary>
+            <param name="startID">起始站点的换乘点ID，即站点的SmUserId。</param>
+            <param name="endID">终止站点的换乘点ID，即站点的SmUserId。</param>
+            <param name="busSolutionParam">公交换乘参数</param>
+            <param name="mapParam">地图参数</param>
+            <returns>返回类型<see cref="T:SuperMap.IS.Utility.BusSolutionItem">BusSolutionItem</see>。
+            如果有符合条件的换乘方案，可以通过<see cref="F:SuperMap.IS.Utility.BusSolutionItem.RoutingItems">BusSolutionItem.RoutingItems</see>
+            获取所有公交换乘方案；如果没有符合条件的换乘方案，那么<see cref="T:SuperMap.IS.Utility.BusSolutionItem">BusSolutionItem</see>值为null。
+            </returns>
+            <remarks>
+            公交换乘分析需要使用已经进行公交建模处理的空间数据。在进行公交建模处理时会将公交站点的SmUserId值作为换乘分析关键值。
+            对其进行相应的赋值，如在一个十字交叉路口的四个方向都有相同站点名的公交站点，而且相距很近，进行公交建模后，这四个公交站点
+            的SmUserId值都将会被赋予相同的数值，如SmUserID = 5，这表明进行公交换乘分析时这四个站点可以最为一个公交站点处理，可以进行转车。因此使用该
+            方法进行公交换乘分析需要明确起始站和终点站的SmUserId的值。
+            </remarks>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.INetworkAnalystService.GetBusSolution(System.String,System.String,SuperMap.IS.Utility.BusSolutionParam,SuperMap.IS.Utility.MapParam)">
+            <summary>
+            根据起始和终点站点名称查询公交换乘方案。
+            </summary>
+            <param name="startText">起始站点的站点名</param>
+            <param name="endText">终止站点的站点名</param>
+            <param name="busSolutionParam">公交换乘参数</param>
+            <param name="mapParam">地图参数。</param>
+            <returns>
+            <para>1、返回类型<see cref="T:SuperMap.IS.Utility.BusSolutionItem"/>。
+            </para>
+            </returns>
+            <remarks>
+            <para>1、使用该方法进行公交换乘方案的分析可能获取三种结果，第一种结果就是地图服务返回符合条件的换乘方案，
+            并通过<see cref="F:SuperMap.IS.Utility.BusSolutionItem.RoutingItems"/>获取方案；
+            当起始站点和终点站点名称不唯一的时候，地图服务会返回第二种结果返回包含起始站点名称的所有车站对象和包含终点站名
+            的所有车站对象，可以通过<see cref="F:SuperMap.IS.Utility.BusSolutionItem.StartStops"/>和<see cref="F:SuperMap.IS.Utility.BusSolutionItem.EndStops"/>分别获取包含起始站或者终点站名
+            的所有公交站点对象，以供其选择一个唯一的起始和终点站进行第二次换乘方案的查询；第三种结果是没有符合条件的换乘方案，即返回的<see cref="T:SuperMap.IS.Utility.BusSolutionItem"/>为null。
+            </para>
+            <para>
+            2、该方法会分析出从起点到终点0次换乘、1次换乘以及2次换乘的所有解决方案。
+            </para>
+            </remarks>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.INetworkAnalystService.GetBusSolution(SuperMap.IS.Utility.MapCoord,SuperMap.IS.Utility.MapCoord,System.Double,SuperMap.IS.Utility.BusSolutionParam,SuperMap.IS.Utility.MapParam)">
+            <summary>
+            根据地理坐标查询公交换乘方案。
+            </summary>
+            <param name="startPoint">起始地理坐标点。</param>
+            <param name="endPoint">终止地理坐标点。</param>
+            <param name="tolerance">距离容限。单位与地图单位一致。地图服务会以起始（或者终止）坐标点为圆心，以该容限为半径，设置一个查询的圆形范围。在该范围内
+            的公交站点即为待分析的站点。</param>
+            <param name="busSolutionParam">公交换乘参数</param>
+            <param name="mapParam">地图参数。</param>
+            <returns>返回一个公交方案集合对象- <see cref="T:SuperMap.IS.Utility.BusSolutionItem"/>。</returns>
+            <remarks>
+            <para>
+            1、通过该方法获取公交换乘解决方案需要设置一个距离容限，地图服务首先查询出落在以起始（或者终止）坐标点为圆心，以该容限为半径的
+            圆范围内的所有起始（或者终止）站点。然后分别对每一个起始站点和终止站点进行公交换乘分析，最后对所有可能的换乘解决方案进行排序，按照顺序返回指定个数的换乘方案。
+            </para>
+            <para>
+            2、在设置距离容限时需要谨慎。如果距离容限过大，可能会导致分析时间延长，从而使系统性能下降。
+            </para> 
+            <para>3、对于返回的换乘方案对象集合<see cref="T:SuperMap.IS.Utility.BusSolutionItem"/>来说，如果有符合条件的换乘方案，可以通过<see cref="F:SuperMap.IS.Utility.BusSolutionItem.RoutingItems"/>
+            获取所有公交换乘方案；如果没有符合条件的换乘方案，那么<see cref="T:SuperMap.IS.Utility.BusSolutionItem"/>值为null。
+            </para>
+            </remarks>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.INetworkAnalystService.ShowRouting(SuperMap.IS.Utility.BusRoutingItem,SuperMap.IS.Utility.Style,SuperMap.IS.Utility.Style,SuperMap.IS.Utility.MapParam)">
+            <summary>
+            在地图上高亮显示一个公交换乘的路径。
+            </summary>
+            <param name="routing">指定要高亮的某套公交换乘方案的线路。</param>
+            <param name="stopStyle">公交站点的高亮风格</param>
+            <param name="lineStyle">公交线路的高亮风格</param>
+            <param name="mapParam">地图参数</param>
+            <returns>
+            <para>
+            返回地图结果对象-<see cref="T:SuperMap.IS.Utility.MapImage">SuperMap.IS.Utility.MapImage</see>。
+            </para>
+            <para>
+            通过<see cref="T:SuperMap.IS.Utility.MapImage">SuperMap.IS.Utility.MapImage</see>能够获得地图以及相关地图信息的描述。
+            通过<see cref="F:SuperMap.IS.Utility.MapImage.ReturnMapParam">SuperMap.IS.Utility.MapImage.ReturnMapParam</see>可以得到当前地图的信息描述，例如地图的名称、
+            地图的范围、中心点坐标等等。通过<see cref="F:SuperMap.IS.Utility.MapImage.MapUrl">SuperMap.IS.Utility.MapImage.MapUrl</see>可以获取地图的显示图片。     
+            </para>
+            </returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.INetworkAnalystService.ShowBusLine(System.Int32,SuperMap.IS.Utility.Style,SuperMap.IS.Utility.MapParam)">
+            <summary>
+            在地图上高亮显示一条公交线路。
+            </summary>
+            <param name="lineID">公交线路的SmID</param>
+            <param name="lineStyle">公交线路的高亮风格</param>
+            <param name="mapParam">地图参数</param>
+            <returns>
+            <para>
+            返回地图结果对象-<see cref="T:SuperMap.IS.Utility.MapImage">SuperMap.IS.Utility.MapImage</see>。
+            </para>
+            <para>
+            通过<see cref="T:SuperMap.IS.Utility.MapImage">SuperMap.IS.Utility.MapImage</see>能够获得地图以及相关地图信息的描述。
+            通过<see cref="F:SuperMap.IS.Utility.MapImage.ReturnMapParam">SuperMap.IS.Utility.MapImage.ReturnMapParam</see>可以得到当前地图的信息描述，例如地图的名称、
+            地图的范围、中心点坐标等等。通过<see cref="F:SuperMap.IS.Utility.MapImage.MapUrl">SuperMap.IS.Utility.MapImage.MapUrl</see>可以获取地图的显示图片。     
+            </para>
+            </returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.INetworkAnalystService.ShowBusStop(System.Int32,SuperMap.IS.Utility.Style,SuperMap.IS.Utility.MapParam)">
+            <summary>
+            在地图上高亮显示一个公交站点。
+            </summary>
+            <param name="stopID">公交站点的ID</param>
+            <param name="stopStyle">公交站点的高亮风格</param>
+            <param name="mapParam">地图参数</param>
+            <returns>
+            <para>
+            返回地图结果对象-<see cref="T:SuperMap.IS.Utility.MapImage">SuperMap.IS.Utility.MapImage</see>。
+            </para>
+            <para>
+            通过<see cref="T:SuperMap.IS.Utility.MapImage">SuperMap.IS.Utility.MapImage</see>能够获得地图以及相关地图信息的描述。
+            通过<see cref="F:SuperMap.IS.Utility.MapImage.ReturnMapParam">SuperMap.IS.Utility.MapImage.ReturnMapParam</see>可以得到当前地图的信息描述，例如地图的名称、
+            地图的范围、中心点坐标等等。通过<see cref="F:SuperMap.IS.Utility.MapImage.MapUrl">SuperMap.IS.Utility.MapImage.MapUrl</see>可以获取地图的显示图片。     
+            </para>
+            </returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.INetworkAnalystService.UpdateBusLinePriority(System.Int32,System.Int32,SuperMap.IS.Utility.MapParam)">
+             <summary>
+             根据指定的地图参数动态修改某条线路的优先级。
+             </summary>
+             <param name="buslineSmID">线路SmID</param>
+             <param name="priority">优先级，默认值为0。</param>
+             <param name="mapParam">地图参数</param>
+             <returns>是否修改成功</returns>
+             <remarks>
+             <para>
+             优先级值越大，优先级越高，其值越小，优先级越低。对于地铁，轻轨等线路可以设置较高的优先级（比如设为1），这样在公交换乘时的换乘结果会优先选择这些线路；
+             对于某些比较涌挤的路线，可以设置较低的优先级（比如设-1），这样在公交换乘时的换乘结果将不会优先选择这些线路。
+             </para>
+            <para>
+             优先级的修改也可以在BusNetwork Manager里进行设置，打开具有公交网络图层的工作空间后，可在【公交网络】-> 【动态修改优先级】里进行设置。
+             </para>
+             </remarks>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.INetworkAnalystService.UpdateBusLinesPriority(System.Int32[],System.Int32,SuperMap.IS.Utility.MapParam)">
+             <summary>
+             根据指定的地图参数动态修改某条线路的优先级。
+             </summary>
+             <param name="buslineSmIDs">线路SmID数组</param>
+             <param name="priority">线路优先级</param>
+             <param name="mapParam">地图参数</param>
+             <returns>是否修改成功</returns>
+             <remarks>
+             <para>
+             优先级值越大，优先级越高，其值越小，优先级越低。对于地铁，轻轨等线路可以设置较高的优先级（比如设为1），这样在公交换乘时的换乘结果会优先选择这些线路；
+             对于某些比较涌挤的路线，可以设置较低的优先级（比如设-1），这样在公交换乘时的换乘结果将不会优先选择这些线路。
+             </para>
+            <para>
+             优先级的修改也可以在BusNetwork Manager里进行设置，打开具有公交网络图层的工作空间后，可在【公交网络】-> 【动态修改优先级】里进行设置。
+             </para>
+             </remarks> 
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.INetworkAnalystService.UpdateNodeWeight(System.String,SuperMap.IS.Utility.NetworkParams,System.Int32,System.Int32,System.Int32,System.Double)">
+            <summary>
+            更新网络结点权值。
+            </summary>
+            <param name="mapName">地图名称</param>
+            <param name="networkParams">网络分析参数设置</param>
+            <param name="nodeID">结点ID</param>
+            <param name="fromEdgeID">起始弧段ID</param>
+            <param name="toEdgeID">终止弧段ID</param>
+            <param name="weight">转弯权值</param>
+            <returns>更新成功返回更新前的权值，失败返回一个负值-1000,原来不通的更新后返回-1。</returns>
+            <remarks>
+            <para>
+            在内存转向表中更新一个结点的转向权值<see cref="F:SuperMap.IS.Utility.TurnTableSetting.TRNWeightField"/>，进行路径分析时，需要将弧段权值和节点权值相加，然后比较各个不同结果的
+            值来获取最佳路径。起始弧段ID、终止弧段ID必须和弧段权值表中的“弧段ID”一致；转弯权值单位必须和弧段权值表中的正、逆向权值单位一致。
+            </para>
+            <para>
+            该方法主要用于动态修改内存中转向表的一个结点的转向权值，方向从ID为fromEdgeID的弧段到ID为toEdgeID的弧段，权值为dWeight。
+            </para>
+            <para>
+            需要说明的是，使用该方法动态设置网络结点的权值后，一旦地图服务重新启动，该权值将失效，重启后后网络分析依据的转向
+            阻力值将来源于转向表。
+            </para>
+            </remarks>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.INetworkAnalystService.UpdateNodeWeight(System.String,SuperMap.IS.Utility.NetworkParams,System.Int32[],System.Int32[],System.Int32[],System.Double[])">
+            <summary>
+            批量更新网络结点权值。
+            </summary>
+            <param name="mapName">地图名称</param>
+            <param name="networkParams">网络分析参数设置</param>
+            <param name="nodeIDs">结点ID</param>
+            <param name="fromEdgeIDs">起始弧段ID</param>
+            <param name="toEdgeIDs">终止弧段ID</param>
+            <param name="weights">转弯权值</param>
+            <returns>更新成功返回更新前的权值，失败返回一个负值-1000,原来不通的更新后返回-1。</returns>
+            <remarks>
+            <para>
+            在内存转向表中更新一个结点的转向权值<see cref="F:SuperMap.IS.Utility.TurnTableSetting.TRNWeightField"/>，进行路径分析时，需要将弧段权值和节点权值相加，然后比较各个不同结果的
+            值来获取最佳路径。起始弧段ID、终止弧段ID必须和弧段权值表中的“弧段ID”一致；转弯权值单位必须和弧段权值表中的正、逆向权值单位一致。
+            </para>
+            <para>
+            该方法主要用于动态修改内存中转向表的一个结点的转向权值，方向从ID为fromEdgeID的弧段到ID为toEdgeID的弧段，权值为dWeight。
+            </para>
+            <para>
+            需要说明的是，使用该方法动态设置网络结点的权值后，一旦地图服务重新启动，该权值将失效，重启后后网络分析依据的转向
+            阻力值将来源于转向表。
+            </para>
+            <para>使用该方法时需注意，结点ID，起始弧段ID，终止弧段ID，转弯权值参数长度必须完全一致。
+            </para>
+            </remarks>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.INetworkAnalystService.UpdateEdgeWeight(System.String,SuperMap.IS.Utility.NetworkParams,System.Int32,System.Int32,System.Int32,System.Double)">
+            <summary>
+            更新网络弧段权值。
+            </summary>
+            <param name="mapName">地图名称</param>
+            <param name="networkParams">网络分析参数设置</param>
+            <param name="edgeID">弧段ID</param>
+            <param name="fromNodeID">起始结点ID</param>
+            <param name="toNodeID">终止结点ID</param>
+            <param name="weight">通行权值</param>
+            <returns>更新成功返回更新前的权值，失败返回一个负值-1000,原来不通的边更新后返回-1。</returns>
+            <remarks>
+            <para>
+            通常进行网络分析的时候，各个网络弧段的阻力值来源于空间数据的某个属性字段，也就是说这些阻力值是固定的。但是在一些特殊的
+            应用里，一些弧段的阻力值可能是不断的变化的，这时可以使用该方法动态修改网络弧段的权值（阻力值）。
+            </para>
+            <para>
+            需要说明的是，使用该方法动态设置网络弧段的权值后，一旦地图服务重新启动，该权值将失效，重启后后网络分析依据的各个网络弧段的
+            阻力值将来源于空间数据的某个属性字段。
+            </para>
+            <para>
+            弧段是有方向的，如果要设置弧段正向的权值（正阻力值），将该弧段的起始结点ID值赋予该方法的fromNodeID参数。
+            如果要设置弧段反向的权值（反阻力值），将该弧段的终止结点ID值赋予该方法的fromNodeID参数。
+            </para>
+            <para>所有不通的弧段处理成权值-1。
+            </para>
+            <para>使用该方法时需注意，如果本来该弧段就是障碍边，则不能设置权值。
+            </para>
+            </remarks>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.INetworkAnalystService.UpdateEdgeWeight(System.String,SuperMap.IS.Utility.NetworkParams,System.Int32[],System.Int32[],System.Int32[],System.Double[])">
+            <summary>
+            批量更新网络弧段权值。
+            </summary>
+            <param name="mapName">地图名称</param>
+            <param name="networkParams">网络分析参数设置</param>
+            <param name="edgeIDs">弧段ID</param>
+            <param name="fromNodeIDs">起始结点ID</param>
+            <param name="toNodeIDs">终止结点ID</param>
+            <param name="weights">通行权值</param>
+            <returns>更新成功返回更新前的权值，失败返回一个负值-1000,原来不通的边更新后返回-1。</returns>
+            <remarks>
+            <para>
+            通常进行网络分析的时候，各个网络弧段的阻力值来源于空间数据的某个属性字段，也就是说这些阻力值是固定的。但是在一些特殊的
+            应用里，一些弧段的阻力值可能是不断的变化的，这时可以使用该方法动态修改网络弧段的权值（阻力值）。
+            </para>
+            <para>
+            需要说明的是，使用该方法动态设置网络弧段的权值后，一旦地图服务重新启动，该权值将失效，重启后后网络分析依据的各个网络弧段的
+            阻力值将来源于空间数据的某个属性字段。
+            </para>
+            <para>
+            弧段是有方向的，如果要设置弧段正向的权值（正阻力值），将该弧段的起始结点ID值赋予该方法的fromNodeID参数。
+            如果要设置弧段反向的权值（反阻力值），将该弧段的终止结点ID值赋予该方法的fromNodeID参数。
+            </para>
+            <para>所有不通的弧段处理成权值-1。
+            </para>
+            <para>使用该方法时需注意，如果本来该弧段就是障碍边，则不能设置权值。
+            </para>
+            <para>使用该方法时需注意，弧段ID，起始结点ID，终止结点ID，通行权值参数长度必须完全一致。
+            </para>
+            </remarks>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.INetworkAnalystService.ServiceArea(SuperMap.IS.Utility.MapCoord[],System.Double[],System.Boolean,System.Boolean,System.String,System.String,SuperMap.IS.Utility.NetworkParams,System.String)">
+            <summary>
+            服务区分析。根据坐标
+            </summary>
+            <returns>分析成功返回true，否则返回false</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.INetworkAnalystService.ServiceArea(System.Int32[],System.Double[],System.Boolean,System.Boolean,System.String,System.String,SuperMap.IS.Utility.NetworkParams,System.String)">
+            <summary>
+            服务区分析。根据节点ID
+            </summary>
+            <returns>分析成功返回true，否则返回false</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.INetworkAnalystService.Logistics(System.Int32[],System.Int32[],System.Boolean,SuperMap.IS.Utility.RouteParam,SuperMap.IS.Utility.MapParam)">
+            <summary>
+            物流配送，根据ID
+            </summary>
+            <param name="centerIDs">配送中心点SmNodeID数组</param>
+            <param name="targetIDs">配送目的地SmNodeID数组</param>
+            <param name="totalMinCost">配送模式是否是总和最小</param>
+            <param name="routeParam">路径分析参数</param>
+            <param name="mapParam">地图参数</param>
+            <returns>返回的物流配送的结果</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.INetworkAnalystService.Logistics(SuperMap.IS.Utility.MapCoord[],SuperMap.IS.Utility.MapCoord[],System.Boolean,SuperMap.IS.Utility.RouteParam,SuperMap.IS.Utility.MapParam)">
+            <summary>
+             物流配送，根据坐标
+            </summary>
+            <param name="centerPoints">配送中心点坐标数组</param>
+            <param name="targetPoints">配送目的地坐标数组</param>
+            <param name="totalMinCost">配送模式是否是总和最小</param>
+            <param name="routeParam">路径分析参数</param>
+            <param name="mapParam">地图参数</param>
+            <returns>返回的物流配送的结果</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.INetworkAnalystService.UpStream(System.String,SuperMap.IS.Utility.StreamParam)">
+            <summary>
+            上游追踪。
+            </summary>
+            <param name="mapName">地图名</param>
+            <param name="streamParam">追踪参数，包括分析起点、流向字段、网络参数、返回结果设置等。</param>
+            <returns>追踪结果。</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.INetworkAnalystService.DownStream(System.String,SuperMap.IS.Utility.StreamParam)">
+            <summary>
+            下游追踪。
+            </summary>
+            <param name="mapName">地图名</param>
+            <param name="streamParam">追踪参数，包括分析起点、流向字段、网络参数、返回结果设置等。</param>
+            <returns>追踪结果。</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.INetworkAnalystService.GenerateGeometryByEventTable(SuperMap.IS.Utility.GenerateGeometryByEventTableParam)">
+            <summary>
+            通过事件表生成空间数据集。成功则返回定位后的点或者线数据集的标识（形如"数据集名称@数据源别名"，例如：Country@World。），如果是线事件表，生成的是路由数据集的标识（形如"数据集名称@数据源别名"，例如：Country@World。）。
+            </summary>
+            <returns>生成的空间数据集的标识（形如"数据集名称@数据源别名"，例如：Country@World。）。</returns>
+            <remarks><para>
+            （1）事件表：事件表是用属性表的方式记录点或者线事件发生所在的道路、刻度、点事件的信息（如交通事故发生地的天气状况、驾驶者的酒精含量、当时的车速等）、
+            道路的路况（路面宽度、铺设材料等）属性，根据已有的路由数据，事件表可以被定位到空间上，生成相应的点或者线图层。</para>
+            <para>（2）点事件表参考道路数据可以生成点数据；线事件表参考道路数据可以生成线数据（路由数据集）。</para>
+            <para>（3）并非所有的事件都可以成功生成空间数据，在生成空间数据时，通常有几种未能成功定位的错误类型，该信息在事件表生成空间数据之后，会被写到事件表数据集中。
+            点事件的错误信息字段有三类描述：定位成功、无对应路由、无对应刻度；线事件的错误信息字段有五类描述：定位成功、无对应路由、部分匹配、完全不匹配、首尾刻度相同。</para>
+            </remarks>
+            <param name="param">事件表生成空间数据集的参数设置对象。</param>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.INetworkAnalystService.Allocate(SuperMap.IS.Utility.AllocateParam,SuperMap.IS.Utility.MapParam)">
+            <summary>
+            资源分配。
+            </summary>
+            <param name="allocateParam">资源分配参数。</param>
+            <param name="mapParam">地图参数</param>
+            <returns>资源分配结果。</returns>
+            <remarks>
+            <para>1.资源分配是一个将网络上弧段与结点分配到中心点的过程，依据中心点可提供的资源量和弧段、结点的需求量进行分配。若要限制资源流动的范围，则中心点会设定一个最大阻值，该阻力值表示资源流动的覆盖范围（服务区）。比如学生上学的问题，可以限定每个学生到学校在路上花费的时间不超过40分钟。
+            </para><para> 2.弧段或者结点分配到中心点上是遵循最佳路径原则的，保证到中心点的路径具有最小累计阻值。
+            </para><para> 3.每个需求结点或者弧段被分配时都要消耗相应中心点的资源，在最大阻值范围内，所有需求已满足或者当中心点资源耗尽时，分配终止。
+            </para><para> 4.资源分配的结果会生成一个路由数据集，表示被分配完的弧段；对结点需求，会生成一个结点分配表，该表内主要记录了每个被分配的结点所属的中心点的ID；对弧段需求，会生成一个弧段分配表，该表内主要记录了每个被分配的弧段所属的中心点的ID。
+            </para><para> 5.在资源分配过程中，有两个参数需要注意，一个是资源分配的方向，另外一个是资源分配是否允许跨越已被分配到另一个中心点的弧段或结点，这两个参数的设置，会影响资源分配的结果。资源分配的方向有两个，一个是从中心点出发，另一个是到中心点，例如，发电站经过电网向用户输送电能属于前者，而学生到学校上学属于后者，比如它会涉及每个学生到学校上学路上时间的花费。电网送电问题是不允许有跨越情况的，它必须是相互连接的不能断开，而学校的问题则允许设置为跨越分配。
+            </para><para> 6.资源分配过程：
+            </para><para> （1）准备网络数据集。网络数据集要求带有弧段标识、正向、反向阻值和弧段需求（如分配弧段）字段；结点数据集中带有结点标识和结点需求（如分配结点）字段；
+            </para><para> （2）网络分析环境设置。通过<see cref="T:SuperMap.IS.Utility.NetworkSetting"/>对象设置弧段标识字段、结点标识字段、正反向阻力值和分析弧段过滤条件等；
+            </para><para> （3）中心点设置。通过<see cref="T:SuperMap.IS.Utility.Center"/>和<see cref="F:SuperMap.IS.Utility.LocationAllocateSetting.Centers"/>对象设置各个中心点类型（资源分配中，中心点必须是固定中心）、中心点在网络数据集中的ID号、中心点资源量和中心点的最大阻值）；
+            </para><para> （4）资源分配设置。通过<see cref="T:SuperMap.IS.Utility.LocationAllocateSetting"/>对象设置使用的中心点对象、弧段需求字段（如分配弧段）和结点需求字段（如分配结点）。
+            </para><para> （5）进行资源分配。通过<see cref="M:SuperMap.IS.ServiceInterface.INetworkAnalystService.Allocate(SuperMap.IS.Utility.AllocateParam,SuperMap.IS.Utility.MapParam)"/>方法，选取资源分配模式（只分配结点、只分配弧段
+            或者二者都参与分配）<see cref="F:SuperMap.IS.Utility.AllocateParam.AllocateMode"/>、设定资源分配方向<see cref="F:SuperMap.IS.Utility.AllocateParam.FromCenter"/>、
+            设定是否允许跨越分配<see cref="F:SuperMap.IS.Utility.AllocateParam.Connected"/> 、设定分配后结果路由数据集<see cref="F:SuperMap.IS.Utility.AllocateParam.ResultRouteOption"/> 、
+            设定生成的中心点数据集<see cref="F:SuperMap.IS.Utility.AllocateParam.ResultCenterOption"/> （中心点之前只被指定，并未导出成一个数
+            据集，生成的中心点数据集还包含了实际分配的资源量字段）、设定中心点所服务的结点对照表数据集<see cref="F:SuperMap.IS.Utility.AllocateParam.ResultCenterNodesTableOption"/> 、
+            设定中心点所服务的弧段对照表数据集<see cref="F:SuperMap.IS.Utility.AllocateParam.ResultCenterEdgesTableOption"/> 。
+            </para>
+            </remarks>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.INetworkAnalystService.LocationsAllocate(SuperMap.IS.Utility.LocationsAllocateParam,SuperMap.IS.Utility.MapParam)">
+            <summary>
+            选址分区。
+            </summary>
+            <param name="locationsAllocateParam">选址分区参数。</param>
+            <param name="mapParam">地图参数</param>
+            <returns>选址分区结果。</returns>
+            <remarks>
+            为一个或多个待建的设施选定最佳或最优的地址以使需求方以一种最高效的方式获取服务或者商品。这个模型
+            不仅要决定设施的分布状况，还要将需求点的需求分配到相应的设施中去，因而称之为选址分区。
+            </remarks>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.INetworkAnalystService.FindTspPath(SuperMap.IS.Utility.MapCoord,SuperMap.IS.Utility.MapCoord[],SuperMap.IS.Utility.MapCoord,SuperMap.IS.Utility.RouteParam,SuperMap.IS.Utility.MapParam)">
+            <summary>
+            旅行商路径分析。
+            </summary>
+            <param name="startPoint">起始点。</param>
+            <param name="tourPoints">途经点。</param>
+            <param name="endPoint">终止点，可以为空。</param>
+            <param name="routeParam">路径分析参数。</param>
+            <param name="mapParam">地图参数。</param>
+            <returns>路径分析结果。</returns>
+            <remarks>
+            旅行商路径分析。对一系列站点进行排序后，查找经过所有站点的最佳或近似最佳游历路径。结果提供行驶
+            导引信息，可通过接口 <see cref="F:SuperMap.IS.Utility.RouteResult.PathTable"/>和  <see cref="F:SuperMap.IS.Utility.RouteResult.PathGuides"/> 分别返回行驶导引表、行驶导引字符串信息。行驶
+            导引信息记录了结果路由需要经历的结点和弧段名称以及在每个结点和弧段上的转向信息和具体花费。
+            </remarks>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.INetworkAnalystService.FindTspPath(System.Int32,System.Int32[],System.Nullable{System.Int32},SuperMap.IS.Utility.RouteParam,SuperMap.IS.Utility.MapParam)">
+            <summary>
+            旅行商路径分析。
+            </summary>
+            <param name="startID">起始点ID。</param>
+            <param name="tourIDs">途经点。</param>
+            <param name="endID">终止点，可以为空。</param>
+            <param name="routeParam">路径分析参数。</param>
+            <param name="mapParam">地图参数。</param>
+            <returns>路径分析结果。</returns>
+            <remarks>
+            旅行商路径分析。对一系列站点进行排序后，查找经过所有站点的最佳或近似最佳游历路径。结果提供行驶
+            导引信息，可通过接口 <see cref="F:SuperMap.IS.Utility.RouteResult.PathTable"/>和  <see cref="F:SuperMap.IS.Utility.RouteResult.PathGuides"/> 分别返回行驶导引表、行驶导引字符串信息。行驶
+            导引信息记录了结果路由需要经历的结点和弧段名称以及在每个结点和弧段上的转向信息和具体花费。
+            </remarks>
+        </member>
+        <member name="T:SuperMap.IS.ServiceInterface.MapAppLinker">
+            <summary>
+            地图服务连接器。
+            </summary>
+        </member>
+        <member name="F:SuperMap.IS.ServiceInterface.MapAppLinker.mapName">
+            <summary>
+            地图名。
+            </summary>
+        </member>
+        <member name="F:SuperMap.IS.ServiceInterface.MapAppLinker.machineName">
+            <summary>
+            server 机器名。
+            </summary>
+        </member>
+        <member name="F:SuperMap.IS.ServiceInterface.MapAppLinker.appName">
+            <summary>
+            server 应用名。
+            </summary>
+        </member>
+        <member name="F:SuperMap.IS.ServiceInterface.MapAppLinker.appIP">
+            <summary>
+            server IP地址。
+            </summary>
+        </member>
+        <member name="F:SuperMap.IS.ServiceInterface.MapAppLinker.appPort">
+            <summary>
+            server 端口。
+            </summary>
+        </member>
+        <member name="F:SuperMap.IS.ServiceInterface.MapAppLinker.useable">
+            <summary>
+            server 是否可用
+            </summary>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.MapAppLinker.#ctor(System.String,System.String,System.String,System.String,System.Int32)">
+            <summary>
+            构造函数。
+            </summary>
+            <param name="mapName">地图名</param>
+            <param name="machineName">机器名</param>
+            <param name="appName">应用名</param>
+            <param name="appIP">IP地址</param>
+            <param name="port">端口</param>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.MapAppLinker.#ctor(SuperMap.IS.ServiceInterface.MapAppLinker)">
+            <summary>
+            拷贝构造函数。
+            </summary>
+            <param name="mapAppLinker">地图服务器连接信息</param>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.MapAppLinker.#ctor(System.String,System.Int32)">
+            <summary>
+            构造函数。
+            </summary>
+            <param name="appIP">IP地址</param>
+            <param name="port">端口</param>
+        </member>
+        <member name="P:SuperMap.IS.ServiceInterface.MapAppLinker.MapName">
+            <summary>
+            获取地图名。
+            </summary>
+        </member>
+        <member name="P:SuperMap.IS.ServiceInterface.MapAppLinker.MachineName">
+            <summary>
+            获取机器名。
+            </summary>
+        </member>
+        <member name="P:SuperMap.IS.ServiceInterface.MapAppLinker.AppServerName">
+            <summary>
+            获取服务应用名。
+            </summary>
+        </member>
+        <member name="P:SuperMap.IS.ServiceInterface.MapAppLinker.AppServerIP">
+            <summary>
+            获取服务器IP地址。
+            </summary>
+        </member>
+        <member name="P:SuperMap.IS.ServiceInterface.MapAppLinker.AppServerPort">
+            <summary>
+            获取应用服务所在端口。
+            </summary>
+        </member>
+        <member name="P:SuperMap.IS.ServiceInterface.MapAppLinker.IsValid">
+            <summary>
+            获取应用服务是否可用。
+            </summary>
+        </member>
+        <member name="T:SuperMap.IS.ServiceInterface.IClusterService">
+            <summary>
+            地图应用服务负载平衡器接口。
+            </summary>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IClusterService.Ping">
+            <summary>
+            指示服务器是否可以连通。
+            </summary>
+            <returns>如果可以ping通，则为true；否则返回false。</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IClusterService.GetMapAppLinker(System.String)">
+            <summary>
+            获取 MapAppLinker 实例。
+            </summary>
+            <param name="mapName">地图名</param>
+            <returns>MapAppLinker 实例</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IClusterService.ListMapAppLinker(System.String)">
+            <summary>
+            根据地图名称列出所有的AppServer信息,如不指定地图名称,列出所有地图的信息。
+            </summary>
+            <param name="mapName">地图唯一标示名称</param>
+            <returns>MapAppLinker 实例数组，根据机器名(<see cref="P:SuperMap.IS.ServiceInterface.MapAppLinker.MachineName"/>)和服务应用名(<see cref="P:SuperMap.IS.ServiceInterface.MapAppLinker.AppServerName"/>)进行排序。</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.IClusterService.GetClusterServerInfo">
+            <summary>
+            获取群集服务器信息列表
+            </summary>
+            <returns>群集服务器信息列表</returns>
+        </member>
+        <member name="T:SuperMap.IS.ServiceInterface.ICoordTransformationService">
+            <summary>
+            坐标转换服务。
+            </summary>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.ICoordTransformationService.Transformate(SuperMap.IS.Utility.MapCoord[],SuperMap.IS.Utility.PJCoordSys,SuperMap.IS.Utility.PJCoordSys)">
+            <summary>
+            坐标转换。
+            </summary>
+            <param name="coords">要进行转换的坐标数组。</param>
+            <param name="sourceCoordSys">源坐标系。</param>
+            <param name="targetCoordSys">目标坐标系。</param>
+            <returns>转换后的坐标数组。</returns>
+        </member>
+        <member name="T:SuperMap.IS.ServiceInterface.ISpatialServer">
+            <summary>
+            服务器接口。
+            </summary>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.ISpatialServer.LoadProfile(System.String)">
+            <summary>
+            装载配置文件。
+            </summary>
+            <param name="path">配置文件的路径信息</param>
+            <returns>如果配置文件装载成功，则为true；否则返回false。</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.ISpatialServer.Start">
+            <summary>
+            启动应用服务器。
+            </summary>
+            <returns>如果应用服务器启动成功，则为true；否则返回false。</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.ISpatialServer.Restore">
+            <summary>
+            应用服务器恢复初始状态，不是简单的停止＋启动。
+            </summary>
+            <returns>如果恢复初始状态成功，则为true；否则返回false。</returns>
+        </member>
+        <member name="M:SuperMap.IS.ServiceInterface.ISpatialServer.Stop">
+            <summary>
+            停止服务。
+            </summary>
+            <returns>如果服务成功停止，则为true；否则返回false。</returns>
+        </member>
+        <member name="P:SuperMap.IS.ServiceInterface.ISpatialServer.ID">
+            <summary>
+            服务器标识。
+            </summary>
+        </member>
+        <member name="P:SuperMap.IS.ServiceInterface.ISpatialServer.Name">
+            <summary>
+            服务器名称。
+            </summary>
+        </member>
+        <member name="P:SuperMap.IS.ServiceInterface.ISpatialServer.Maps">
+            <summary>
+            服务器提供的地图列表。
+            </summary>
+        </member>
+        <member name="P:SuperMap.IS.ServiceInterface.ISpatialServer.AppCategory">
+            <summary>
+            应用服务器类型，地图服务器，空间分析服务器，或者自定义服务器。
+            </summary>
+        </member>
+        <member name="P:SuperMap.IS.ServiceInterface.ISpatialServer.ListenerPort">
+            <summary>
+            应用服务器监听端口。
+            </summary>
+        </member>
+        <member name="P:SuperMap.IS.ServiceInterface.ISpatialServer.Status">
+            <summary>
+            服务器状态。
+            </summary>
+        </member>
+    </members>
+</doc>

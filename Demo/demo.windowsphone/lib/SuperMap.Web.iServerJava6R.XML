@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SuperMap.Web.iServerJava6R</name>
+    </assembly>
+    <members>
+        <member name="T:SuperMap.Web.Mapping.TiledDynamicRESTLayer">
+            <summary>
+            	<para>${Mapping_TiledDynamicRESTLayer_Tile}</para>
+            	<para>${Mapping_TiledDynamicRESTLayer_Description}</para>
+            </summary>
+        </member>
+        <member name="M:SuperMap.Web.Mapping.TiledDynamicRESTLayer.#ctor">
+            <summary>${Mapping_TiledDynamicRESTLayer_constructor_None_D}</summary>
+        </member>
+        <member name="M:SuperMap.Web.Mapping.TiledDynamicRESTLayer.GetTileUrl(System.Int32,System.Int32,System.Double)">
+            <summary>${Mapping_TiledDynamicRESTLayer_method_GetTileUrl_D}</summary>
+            <returns>${Mapping_TiledDynamicRESTLayer_method_GetTileUrl_return}</returns>
+            <param name="indexX">${Mapping_TiledDynamicRESTLayer_method_GetTileUrl_param_indexX}</param>
+            <param name="indexY">${Mapping_TiledDynamicRESTLayer_method_GetTileUrl_param_indexY}</param>
+            <param name="resolution">${Mapping_TiledDynamicRESTLayer_method_GetTileUrl_param_resolution}</param>
+        </member>
+        <member name="M:SuperMap.Web.Mapping.TiledDynamicRESTLayer.Initialize">
+            <summary>${Mapping_TiledDynamicRESTLayer_method_Initialize_D}</summary>
+        </member>
+        <member name="P:SuperMap.Web.Mapping.TiledDynamicRESTLayer.IsSkipGetSMMapServiceInfo">
+            <summary>${Mapping_TiledDynamicRESTLayer_attribute_IsSkipGetSMMapServiceInfo_D}</summary>
+        </member>
+        <member name="P:SuperMap.Web.Mapping.TiledDynamicRESTLayer.ReferViewBounds">
+            <summary>${Mapping_TiledDynamicRESTLayer_attribute_ReferViewBounds_D}</summary>
+        </member>
+        <member name="P:SuperMap.Web.Mapping.TiledDynamicRESTLayer.ReferViewer">
+            <summary>${Mapping_TiledDynamicRESTLayer_attribute_ReferViewer_D}</summary>
+        </member>
+        <member name="P:SuperMap.Web.Mapping.TiledDynamicRESTLayer.ReferScale">
+            <summary>${Mapping_TiledDynamicRESTLayer_attribute_ReferScale_D}</summary>
+        </member>
+        <member name="P:SuperMap.Web.Mapping.TiledDynamicRESTLayer.MaxVisibleVertex">
+            <summary>${Mapping_DynamicRESTLayer_attribute_maxVisibleVertex_D}</summary>
+        </member>
+        <member name="P:SuperMap.Web.Mapping.TiledDynamicRESTLayer.ClipRegion">
+            <summary>${Mapping_TiledDynamicRESTLayer_attribute_ClipRegion_D}</summary>
+        </member>
+        <member name="P:SuperMap.Web.Mapping.TiledDynamicRESTLayer.AdjustFactor">
+            <summary>${Mapping_TiledDynamicRESTLayer_attribute_AdjustFactor_D}</summary>
+        </member>
+        <member name="P:SuperMap.Web.Mapping.TiledDynamicRESTLayer.IsScaleCentric">
+            <summary>${Mapping_DynamicRESTLayer_attribute_isScaleCentric_D}</summary>
+        </member>
+        <member name="P:SuperMap.Web.Mapping.TiledDynamicRESTLayer.EnableServerCaching">
+            <summary>${Mapping_TiledDynamicRESTLayer_method_EnableServerCaching_D}</summary>
+        </member>
+        <member name="P:SuperMap.Web.Mapping.TiledDynamicRESTLayer.LayersID">
+            <summary>${Mapping_DynamicRESTLayer_attribute_LayersID_D}</summary>    
+        </member>
+    </members>
+</doc>

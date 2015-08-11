@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gmap.demo.winform", "gmap.demo.winform\gmap.demo.winform.csproj", "{193F7E9D-7F6F-4915-873A-CC663DCDCF42}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mapsui.demo.wpf", "mapsui.demo.wpf\mapsui.demo.wpf.csproj", "{E46564BD-51D3-4115-9E29-2C8CE5F03F0B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "aspnetmvc.demo", "aspnetmvc.demo\aspnetmvc.demo.csproj", "{115B658A-F0BD-47D8-8CEF-BDDC79EA74E1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{193F7E9D-7F6F-4915-873A-CC663DCDCF42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{193F7E9D-7F6F-4915-873A-CC663DCDCF42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{193F7E9D-7F6F-4915-873A-CC663DCDCF42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{193F7E9D-7F6F-4915-873A-CC663DCDCF42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E46564BD-51D3-4115-9E29-2C8CE5F03F0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E46564BD-51D3-4115-9E29-2C8CE5F03F0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E46564BD-51D3-4115-9E29-2C8CE5F03F0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E46564BD-51D3-4115-9E29-2C8CE5F03F0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{115B658A-F0BD-47D8-8CEF-BDDC79EA74E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{115B658A-F0BD-47D8-8CEF-BDDC79EA74E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{115B658A-F0BD-47D8-8CEF-BDDC79EA74E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{115B658A-F0BD-47D8-8CEF-BDDC79EA74E1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Connector", "Connector", "{51670461-33F7-4E11-9B9B-F0A5262A6699}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Unit Tests", "Unit Tests", "{A7CCAB22-9610-4026-B9F3-F17DF6E7EDBF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9D66F64F-2124-427D-9333-D52F2B6212E5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connector20", "Connector\Connector20.csproj", "{AA7F9714-C07F-4B57-9245-ED8E7CCB3BEE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AA7F9714-C07F-4B57-9245-ED8E7CCB3BEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA7F9714-C07F-4B57-9245-ED8E7CCB3BEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA7F9714-C07F-4B57-9245-ED8E7CCB3BEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA7F9714-C07F-4B57-9245-ED8E7CCB3BEE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AA7F9714-C07F-4B57-9245-ED8E7CCB3BEE} = {51670461-33F7-4E11-9B9B-F0A5262A6699}
+	EndGlobalSection
+EndGlobal

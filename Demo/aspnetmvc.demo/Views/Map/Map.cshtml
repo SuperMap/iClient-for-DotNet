@@ -1,0 +1,59 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MvcDemo</title>
+    <script type="text/css" src="../../Content/themes/base/jquery.ui.all.css"></script>
+    <script type="text/javascript" src="../../Scripts/jquery-1.5.1.min.js"></script>
+    <script type="text/javascript" src="../../Scripts/jquery-ui-1.8.11.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#left").accordion();
+        });
+    </script>
+</head>
+<body>
+
+    <div id="myMap" style="width: 800px; height: 600px; position: relative">
+        <img  id="mapImage" src="@ViewBag.url"/>
+    </div>
+    <div id="tools" style="z-index: 1005; position: absolute; left: 8px; top: 8px;">
+        <table>
+            <tr>
+                <td>
+                    <form method="post" action='@Url.Action("Map", new { actionName = "ZoomIn" })'>
+                    <input type="submit" name="ZoomIn" value="放大" />
+                    </form>
+                </td>
+                <td>
+                    <form method="post" action='@Url.Action("Map", new { actionName = "ZoomOut" })'>
+                    <input type="submit" name="ZoomIn" value="缩小" />
+                    </form>
+                </td>
+                <td>
+                    <form method="post" action='@Url.Action("Map", new { actionName = "LeftPan" })'>
+                    <input type="submit" name="ZoomIn" value="左移" />
+                    </form>
+                </td>
+                <td>
+                <form method="post" action='@Url.Action("Map", new { actionName = "RightPan" })'>
+                    <input type="submit" name="ZoomIn" value="右移" />
+                    </form>
+                </td>
+                <td>
+                <form method="post" action='@Url.Action("Map", new { actionName = "UpPan" })'>
+                    <input type="submit" name="ZoomIn" value="上移" />
+                    </form>
+                </td>
+                <td>
+                <form method="post" action='@Url.Action("Map", new { actionName = "DownPan" })'>
+                    <input type="submit" name="ZoomIn" value="下移" />
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,15 @@
+D:\svn\wujr\iconnectornet\trunk\iServerConnectorForDotNet\Connector\bin\Debug\SuperMap.Connector.dll.config
+D:\svn\wujr\iconnectornet\trunk\iServerConnectorForDotNet\Connector\bin\Debug\SuperMap.Connector.xml
+D:\svn\wujr\iconnectornet\trunk\iServerConnectorForDotNet\Connector\bin\Debug\SuperMap.Connector.dll
+D:\svn\wujr\iconnectornet\trunk\iServerConnectorForDotNet\Connector\bin\Debug\SuperMap.Connector.pdb
+D:\svn\wujr\iconnectornet\trunk\iServerConnectorForDotNet\Connector\bin\Debug\zh-CHS\SuperMap.Connector.resources.dll
+D:\svn\wujr\iconnectornet\trunk\iServerConnectorForDotNet\Connector\bin\Debug\Newtonsoft.Json.dll
+D:\svn\wujr\iconnectornet\trunk\iServerConnectorForDotNet\Connector\bin\Debug\Newtonsoft.Json.xml
+D:\svn\wujr\iconnectornet\trunk\iServerConnectorForDotNet\Connector\obj\Debug\ResolveAssemblyReference.cache
+D:\svn\wujr\iconnectornet\trunk\iServerConnectorForDotNet\Connector\obj\Debug\SuperMap.Connector.Resources.resources
+D:\svn\wujr\iconnectornet\trunk\iServerConnectorForDotNet\Connector\obj\Debug\SuperMap.Connector.Resources.zh-CHS.resources
+D:\svn\wujr\iconnectornet\trunk\iServerConnectorForDotNet\Connector\obj\Debug\GenerateResource.read.1.tlog
+D:\svn\wujr\iconnectornet\trunk\iServerConnectorForDotNet\Connector\obj\Debug\GenerateResource.write.1.tlog
+D:\svn\wujr\iconnectornet\trunk\iServerConnectorForDotNet\Connector\obj\Debug\zh-CHS\SuperMap.Connector.resources.dll
+D:\svn\wujr\iconnectornet\trunk\iServerConnectorForDotNet\Connector\obj\Debug\SuperMap.Connector.dll
+D:\svn\wujr\iconnectornet\trunk\iServerConnectorForDotNet\Connector\obj\Debug\SuperMap.Connector.pdb

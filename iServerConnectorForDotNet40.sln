@@ -1,0 +1,116 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Connector", "Connector", "{51670461-33F7-4E11-9B9B-F0A5262A6699}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{A7CCAB22-9610-4026-B9F3-F17DF6E7EDBF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9D66F64F-2124-427D-9333-D52F2B6212E5}"
+	ProjectSection(SolutionItems) = preProject
+		iServerConnectorForDotNet40.vsmdi = iServerConnectorForDotNet40.vsmdi
+		Local.testsettings = Local.testsettings
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connector40", "Connector\Connector40.csproj", "{AA7F9714-C07F-4B57-9245-ED8E7CCB3BEE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demo", "Demo", "{3C73EEE6-4D8D-4EC8-A46B-7BD08B94D78B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "aspnetmvc.demo", "Demo\aspnetmvc.demo\aspnetmvc.demo.csproj", "{115B658A-F0BD-47D8-8CEF-BDDC79EA74E1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GMap.NET", "GMap.NET", "{B66B13DF-3D5F-420C-A6AE-16CDE452E26B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GMap.NET.Core", "GMap.NET\GMap.NET.Core\GMap.NET.Core.csproj", "{D0C39D9D-BED0-418B-9A5E-713176CAF40C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GMap.NET.WindowsForms", "GMap.NET\GMap.NET.WindowsForms\GMap.NET.WindowsForms.csproj", "{E06DEF77-F933-42FB-AFD7-DB2D0D8D6A98}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GMap.NET.WindowsPresentation", "GMap.NET\GMap.NET.WindowsPresentation\GMap.NET.WindowsPresentation.csproj", "{644FE7D4-0184-400F-B2D7-99CB41360658}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Controls", "Controls", "{62231EF5-8B4F-4AF1-B15F-30958C7D7D7D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsPresentation", "Controls\WindowsPresentation\WindowsPresentation.csproj", "{988B5DEE-F3C4-41DB-AD46-A5387C8C0C35}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsForms", "Controls\WindowsForm\WindowsForms.csproj", "{1714044B-0B98-47A8-9FDC-B90945AF0B24}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "demo.winform", "Demo\demo.winform\demo.winform.csproj", "{193F7E9D-7F6F-4915-873A-CC663DCDCF42}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1714044B-0B98-47A8-9FDC-B90945AF0B24} = {1714044B-0B98-47A8-9FDC-B90945AF0B24}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "demo.WpfApplication", "Demo\demo.WpfApplication\demo.WpfApplication.csproj", "{CAA4469F-D89D-4963-8456-4986B024C7BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFMapControlTest", "UnitTests\WPFControlTest\WPFMapControlTest.csproj", "{2811113F-32C3-4CA4-890D-80DD67266070}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConnectorUTests", "UnitTests\ConnectorTest\ConnectorUTests.csproj", "{789F5D45-EEF9-4B6E-AC9F-A287D7D09C99}"
+EndProject
+Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = iServerConnectorForDotNet40.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AA7F9714-C07F-4B57-9245-ED8E7CCB3BEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA7F9714-C07F-4B57-9245-ED8E7CCB3BEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA7F9714-C07F-4B57-9245-ED8E7CCB3BEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA7F9714-C07F-4B57-9245-ED8E7CCB3BEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{115B658A-F0BD-47D8-8CEF-BDDC79EA74E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{115B658A-F0BD-47D8-8CEF-BDDC79EA74E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{115B658A-F0BD-47D8-8CEF-BDDC79EA74E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{115B658A-F0BD-47D8-8CEF-BDDC79EA74E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0C39D9D-BED0-418B-9A5E-713176CAF40C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0C39D9D-BED0-418B-9A5E-713176CAF40C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0C39D9D-BED0-418B-9A5E-713176CAF40C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0C39D9D-BED0-418B-9A5E-713176CAF40C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E06DEF77-F933-42FB-AFD7-DB2D0D8D6A98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E06DEF77-F933-42FB-AFD7-DB2D0D8D6A98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E06DEF77-F933-42FB-AFD7-DB2D0D8D6A98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E06DEF77-F933-42FB-AFD7-DB2D0D8D6A98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{644FE7D4-0184-400F-B2D7-99CB41360658}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{644FE7D4-0184-400F-B2D7-99CB41360658}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{644FE7D4-0184-400F-B2D7-99CB41360658}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{644FE7D4-0184-400F-B2D7-99CB41360658}.Release|Any CPU.Build.0 = Release|Any CPU
+		{988B5DEE-F3C4-41DB-AD46-A5387C8C0C35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{988B5DEE-F3C4-41DB-AD46-A5387C8C0C35}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{988B5DEE-F3C4-41DB-AD46-A5387C8C0C35}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{988B5DEE-F3C4-41DB-AD46-A5387C8C0C35}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1714044B-0B98-47A8-9FDC-B90945AF0B24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1714044B-0B98-47A8-9FDC-B90945AF0B24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1714044B-0B98-47A8-9FDC-B90945AF0B24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1714044B-0B98-47A8-9FDC-B90945AF0B24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{193F7E9D-7F6F-4915-873A-CC663DCDCF42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{193F7E9D-7F6F-4915-873A-CC663DCDCF42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{193F7E9D-7F6F-4915-873A-CC663DCDCF42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{193F7E9D-7F6F-4915-873A-CC663DCDCF42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CAA4469F-D89D-4963-8456-4986B024C7BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAA4469F-D89D-4963-8456-4986B024C7BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAA4469F-D89D-4963-8456-4986B024C7BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAA4469F-D89D-4963-8456-4986B024C7BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2811113F-32C3-4CA4-890D-80DD67266070}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2811113F-32C3-4CA4-890D-80DD67266070}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2811113F-32C3-4CA4-890D-80DD67266070}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2811113F-32C3-4CA4-890D-80DD67266070}.Release|Any CPU.Build.0 = Release|Any CPU
+		{789F5D45-EEF9-4B6E-AC9F-A287D7D09C99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{789F5D45-EEF9-4B6E-AC9F-A287D7D09C99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{789F5D45-EEF9-4B6E-AC9F-A287D7D09C99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{789F5D45-EEF9-4B6E-AC9F-A287D7D09C99}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AA7F9714-C07F-4B57-9245-ED8E7CCB3BEE} = {51670461-33F7-4E11-9B9B-F0A5262A6699}
+		{2811113F-32C3-4CA4-890D-80DD67266070} = {A7CCAB22-9610-4026-B9F3-F17DF6E7EDBF}
+		{789F5D45-EEF9-4B6E-AC9F-A287D7D09C99} = {A7CCAB22-9610-4026-B9F3-F17DF6E7EDBF}
+		{115B658A-F0BD-47D8-8CEF-BDDC79EA74E1} = {3C73EEE6-4D8D-4EC8-A46B-7BD08B94D78B}
+		{193F7E9D-7F6F-4915-873A-CC663DCDCF42} = {3C73EEE6-4D8D-4EC8-A46B-7BD08B94D78B}
+		{CAA4469F-D89D-4963-8456-4986B024C7BE} = {3C73EEE6-4D8D-4EC8-A46B-7BD08B94D78B}
+		{D0C39D9D-BED0-418B-9A5E-713176CAF40C} = {B66B13DF-3D5F-420C-A6AE-16CDE452E26B}
+		{E06DEF77-F933-42FB-AFD7-DB2D0D8D6A98} = {B66B13DF-3D5F-420C-A6AE-16CDE452E26B}
+		{644FE7D4-0184-400F-B2D7-99CB41360658} = {B66B13DF-3D5F-420C-A6AE-16CDE452E26B}
+		{988B5DEE-F3C4-41DB-AD46-A5387C8C0C35} = {62231EF5-8B4F-4AF1-B15F-30958C7D7D7D}
+		{1714044B-0B98-47A8-9FDC-B90945AF0B24} = {62231EF5-8B4F-4AF1-B15F-30958C7D7D7D}
+	EndGlobalSection
+EndGlobal

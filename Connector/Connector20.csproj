@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{AA7F9714-C07F-4B57-9245-ED8E7CCB3BEE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SuperMap.Connector</RootNamespace>
+    <AssemblyName>SuperMap.Connector</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DocumentationFile>bin\Debug\SuperMap.Connector.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\SuperMap.Connector.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>SuperMap.iServerConnector.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=4.0.3.0, Culture=neutral, PublicKeyToken=b9a188c8922137c6, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\Newtonsoft.Json20\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="CloudMap.cs" />
+    <Compile Include="Data.cs" />
+    <Compile Include="Helper\AsyncHttpRequest.cs" />
+    <Compile Include="Helper\CacheManager.cs" />
+    <Compile Include="Helper\HashKeyHelper.cs" />
+    <Compile Include="Helper\SynchHttpRequest.cs" />
+    <Compile Include="Map.cs" />
+    <Compile Include="NetworkAnalyst.cs" />
+    <Compile Include="Provider\CloudMapProvider.cs" />
+    <Compile Include="Provider\DataProvider.cs" />
+    <Compile Include="Provider\MapProvider.cs" />
+    <Compile Include="Provider\NetworkAnalystProvider.cs" />
+    <Compile Include="Provider\SpatialAnalystProvider.cs" />
+    <Compile Include="Provider\TrafficTransferAnalystProvider.cs" />
+    <Compile Include="Realspace.cs" />
+    <Compile Include="Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ResourceType\RequestBodyType.cs" />
+    <Compile Include="ResourceType\ResponseBodyType.cs" />
+    <Compile Include="SpatialAnalyst.cs" />
+    <Compile Include="TrafficTransferAnalyst.cs" />
+    <Compile Include="Utilities\BufferAnalyst.cs" />
+    <Compile Include="Utilities\ClosestFacilityPath.cs" />
+    <Compile Include="Utilities\Color.cs" />
+    <Compile Include="Utilities\CoordSys.cs" />
+    <Compile Include="Utilities\DatasetInfo.cs" />
+    <Compile Include="Utilities\DatasourceConnectionInfo.cs" />
+    <Compile Include="Utilities\DataSourceInfo.cs" />
+    <Compile Include="Utilities\Datum.cs" />
+    <Compile Include="Utilities\Delegate\Delegate.cs" />
+    <Compile Include="Utilities\EditResult.cs" />
+    <Compile Include="Utilities\Enum\AlongLineDirection.cs" />
+    <Compile Include="Utilities\Enum\BufferEndType.cs" />
+    <Compile Include="Utilities\Enum\Charset.cs" />
+    <Compile Include="Utilities\Enum\ColorGradientType.cs" />
+    <Compile Include="Utilities\Enum\ColorSpaceType.cs" />
+    <Compile Include="Utilities\Enum\CoordSysType.cs" />
+    <Compile Include="Utilities\Enum\DataReturnMode.cs" />
+    <Compile Include="Utilities\Enum\DatasetType.cs" />
+    <Compile Include="Utilities\Enum\DatumType.cs" />
+    <Compile Include="Utilities\Enum\DirectionType.cs" />
+    <Compile Include="Utilities\Enum\EncodeType.cs" />
+    <Compile Include="Utilities\Enum\EngineType.cs" />
+    <Compile Include="Utilities\Enum\Exponent.cs" />
+    <Compile Include="Utilities\Enum\FieldType.cs" />
+    <Compile Include="Utilities\Enum\FillGradientMode.cs" />
+    <Compile Include="Utilities\Enum\GeometryType.cs" />
+    <Compile Include="Utilities\Enum\GetFeatureMode.cs" />
+    <Compile Include="Utilities\Enum\GraduatedMode.cs" />
+    <Compile Include="Utilities\Enum\GraphAxesTextDisplayMode.cs" />
+    <Compile Include="Utilities\Enum\GraphTextFormat.cs" />
+    <Compile Include="Utilities\Enum\GridType.cs" />
+    <Compile Include="Utilities\Enum\ImageOutputFormat.cs" />
+    <Compile Include="Utilities\Enum\ImageReturnType.cs" />
+    <Compile Include="Utilities\Enum\JoinType.cs" />
+    <Compile Include="Utilities\Enum\KrigingAlgorithmType.cs" />
+    <Compile Include="Utilities\Enum\LabelBackShape.cs" />
+    <Compile Include="Utilities\Enum\LabelMatrixCellType.cs" />
+    <Compile Include="Utilities\Enum\LabelOverLengthMode.cs" />
+    <Compile Include="Utilities\Enum\LayerType.cs" />
+    <Compile Include="Utilities\Enum\MapColorMode.cs" />
+    <Compile Include="Utilities\Enum\OverLayerAnalystType.cs" />
+    <Compile Include="Utilities\Enum\PixelFormat.cs" />
+    <Compile Include="Utilities\Enum\PrimeMeridianType.cs" />
+    <Compile Include="Utilities\Enum\PrjCoordSysType.cs" />
+    <Compile Include="Utilities\Enum\ProjectionType.cs" />
+    <Compile Include="Utilities\Enum\QueryOption.cs" />
+    <Compile Include="Utilities\Enum\RangeMode.cs" />
+    <Compile Include="Utilities\Enum\RectifyType.cs" />
+    <Compile Include="Utilities\Enum\ResourceType.cs" />
+    <Compile Include="Utilities\Enum\SearchMode.cs" />
+    <Compile Include="Utilities\Enum\SideType.cs" />
+    <Compile Include="Utilities\Enum\SmoothMethod.cs" />
+    <Compile Include="Utilities\Enum\SpatialQueryMode.cs" />
+    <Compile Include="Utilities\Enum\SpatialRefType.cs" />
+    <Compile Include="Utilities\Enum\SpheroidType.cs" />
+    <Compile Include="Utilities\Enum\StatisticMode.cs" />
+    <Compile Include="Utilities\Enum\SupplyCenterType.cs" />
+    <Compile Include="Utilities\Enum\TextAlignment.cs" />
+    <Compile Include="Utilities\Enum\ThemeGraphType.cs" />
+    <Compile Include="Utilities\Enum\ThemeType.cs" />
+    <Compile Include="Utilities\Enum\TransferPreference.cs" />
+    <Compile Include="Utilities\Enum\TransferTactic.cs" />
+    <Compile Include="Utilities\Enum\TurnType.cs" />
+    <Compile Include="Utilities\Enum\UGCLayerType.cs" />
+    <Compile Include="Utilities\Enum\Unit.cs" />
+    <Compile Include="Utilities\Enum\VariogramMode.cs" />
+    <Compile Include="Utilities\EventArgs\EventArgs.cs" />
+    <Compile Include="Utilities\Exception\ServiceException.cs" />
+    <Compile Include="Utilities\ExtractParameter.cs" />
+    <Compile Include="Utilities\Feature.cs" />
+    <Compile Include="Utilities\FieldInfo.cs" />
+    <Compile Include="Utilities\Geometry.cs" />
+    <Compile Include="Utilities\ImageOutputOption.cs" />
+    <Compile Include="Utilities\InterpolationParameter.cs" />
+    <Compile Include="Utilities\JoinItem.cs" />
+    <Compile Include="Utilities\JsonConverter\DatasetInfoConverter.cs" />
+    <Compile Include="Utilities\JsonConverter\DateTimeConverter.cs" />
+    <Compile Include="Utilities\JsonConverter\GeometryConverter.cs" />
+    <Compile Include="Utilities\JsonConverter\LabelMatrixCellConverter.cs" />
+    <Compile Include="Utilities\JsonConverter\LayerConverter.cs" />
+    <Compile Include="Utilities\JsonConverter\MapParameterConverter.cs" />
+    <Compile Include="Utilities\JsonConverter\RouteConverter.cs" />
+    <Compile Include="Utilities\JsonConverter\ThemeConverter.cs" />
+    <Compile Include="Utilities\LabelMatrixCell.cs" />
+    <Compile Include="Utilities\LabelMixedTextStyle.cs" />
+    <Compile Include="Utilities\Layer.cs" />
+    <Compile Include="Utilities\LinkItem.cs" />
+    <Compile Include="Utilities\LocationAnalyst.cs" />
+    <Compile Include="Utilities\MapImage.cs" />
+    <Compile Include="Utilities\MapParameter.cs" />
+    <Compile Include="Utilities\Measure.cs" />
+    <Compile Include="Utilities\MTSPPath.cs" />
+    <Compile Include="Utilities\Overlay.cs" />
+    <Compile Include="Utilities\Overview.cs" />
+    <Compile Include="Utilities\Path.cs" />
+    <Compile Include="Utilities\PathGuideItem.cs" />
+    <Compile Include="Utilities\PDFOption.cs" />
+    <Compile Include="Utilities\Point.cs" />
+    <Compile Include="Utilities\Point2D.cs" />
+    <Compile Include="Utilities\PrimeMeridian.cs" />
+    <Compile Include="Utilities\PrjCoordSys .cs" />
+    <Compile Include="Utilities\PrjParameter.cs" />
+    <Compile Include="Utilities\Projection.cs" />
+    <Compile Include="Utilities\QueryParameter.cs" />
+    <Compile Include="Utilities\QueryParameterSet.cs" />
+    <Compile Include="Utilities\QueryResult.cs" />
+    <Compile Include="Utilities\Recordset.cs" />
+    <Compile Include="Utilities\Rectangle.cs" />
+    <Compile Include="Utilities\Rectangle2D.cs" />
+    <Compile Include="Utilities\ResourceImage.cs" />
+    <Compile Include="Utilities\ResourceInfo.cs" />
+    <Compile Include="Utilities\ResourceParameter.cs" />
+    <Compile Include="Utilities\Route.cs" />
+    <Compile Include="Utilities\ServiceArea.cs" />
+    <Compile Include="Utilities\SpatialAnalystParameter.cs" />
+    <Compile Include="Utilities\SpatialAnalystResult.cs" />
+    <Compile Include="Utilities\Spheroid.cs" />
+    <Compile Include="Utilities\Style.cs" />
+    <Compile Include="Utilities\SupplyCenter.cs" />
+    <Compile Include="Utilities\TextStyle.cs" />
+    <Compile Include="Utilities\Theme.cs" />
+    <Compile Include="Utilities\Theme3D.cs" />
+    <Compile Include="Utilities\TileInfo.cs" />
+    <Compile Include="Utilities\TrafficTransferAnalystParameter.cs" />
+    <Compile Include="Utilities\TransferGuideItem.cs" />
+    <Compile Include="Utilities\TransferGuide.cs" />
+    <Compile Include="Utilities\TransferLine.cs" />
+    <Compile Include="Utilities\TransferLines.cs" />
+    <Compile Include="Utilities\TransferSolution.cs" />
+    <Compile Include="Utilities\TransferSolutions.cs" />
+    <Compile Include="Utilities\TransferStopInfo.cs" />
+    <Compile Include="Utilities\TransportationAnalystParameter.cs" />
+    <Compile Include="Utilities\TransportationAnalystResultSetting.cs" />
+    <Compile Include="Utilities\TSPPath.cs" />
+    <Compile Include="Utilities\UserInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SuperMap.iServerConnector.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources.zh-CHS.resx" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>if exist "$(TargetDir)*.tmp" del /f "$(TargetDir)*.tmp"
+xcopy /disy "$(TargetDir)*"  "$(TargetDir)..\..\..\Build\net20\"
+
+rem xcopy /diy "$(TargetDir)*.*"  "$(TargetDir)..\..\..\..\iServerConnectorDoc\Lib\"</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

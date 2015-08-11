@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1714044B-0B98-47A8-9FDC-B90945AF0B24}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SuperMap.Connector.Control.Forms</RootNamespace>
+    <AssemblyName>SuperMap.Connector.Control.Forms</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\SuperMap.Connector.Control.Forms.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DocumentationFile>bin\Release\SuperMap.Connector.Control.Forms.xml</DocumentationFile>
+    <RegisterForComInterop>true</RegisterForComInterop>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\Connector\Connector40.csproj">
+      <Project>{AA7F9714-C07F-4B57-9245-ED8E7CCB3BEE}</Project>
+      <Name>Connector40</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\GMap.NET\GMap.NET.Core\GMap.NET.Core.csproj">
+      <Project>{D0C39D9D-BED0-418B-9A5E-713176CAF40C}</Project>
+      <Name>GMap.NET.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\GMap.NET\GMap.NET.WindowsForms\GMap.NET.WindowsForms.csproj">
+      <Project>{E06DEF77-F933-42FB-AFD7-DB2D0D8D6A98}</Project>
+      <Name>GMap.NET.WindowsForms</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\Utilities\Helper.cs">
+      <Link>Helper.cs</Link>
+    </Compile>
+    <Compile Include="..\Utilities\Layer.cs">
+      <Link>Layer.cs</Link>
+    </Compile>
+    <Compile Include="..\Utilities\MouseWheelZoomType.cs">
+      <Link>MouseWheelZoomType.cs</Link>
+    </Compile>
+    <Compile Include="..\Utilities\SuperMapProjection.cs">
+      <Link>SuperMapProjection.cs</Link>
+    </Compile>
+    <Compile Include="..\Utilities\SuperMapProvider.cs">
+      <Link>SuperMapProvider.cs</Link>
+    </Compile>
+    <Compile Include="Action.cs" />
+    <Compile Include="GraphicsGeometries.cs" />
+    <Compile Include="IAction.cs" />
+    <Compile Include="MapControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MapControl.Designer.cs">
+      <DependentUpon>MapControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MapAction.cs" />
+    <Compile Include="MapDelegate.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="MapControl.resx">
+      <DependentUpon>MapControl.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>if exist "$(TargetDir)*.tmp" del /f "$(TargetDir)*.tmp"
+xcopy /disy "$(TargetDir)*.dll"  "$(TargetDir)..\..\..\..\Build\controls\forWinForm\"
+xcopy /disy "$(TargetDir)*.xml"  "$(TargetDir)..\..\..\..\Build\controls\forWinForm\"
+xcopy /disy "$(TargetDir)*.config"  "$(TargetDir)..\..\..\..\Build\controls\forWinForm\"
+xcopy /disy "$(TargetDir)*.dll"  "$(TargetDir)..\..\..\..\Demo\demo.winform\lib\"
+xcopy /disy "$(TargetDir)*.xml"  "$(TargetDir)..\..\..\..\Demo\demo.winform\lib\"
+xcopy /disy "$(TargetDir)*.config"  "$(TargetDir)..\..\..\..\Demo\demo.winform\lib\"
+xcopy /diy "$(TargetDir)*.*"  "$(TargetDir)..\..\..\..\..\iServerConnectorDoc\Lib\"</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
