@@ -1,7 +1,9 @@
 一、	产品简介
+
 SuperMap iServer Connector for .NET 是一套基于微软 .NET 平台开发的 SDK 包，通过该产品可以快速的在 .NET 平台下访问 SuperMap iServer REST 服务。该产品满足了SuperMap iSever 用户进行 Web 扩展开发的需求，方便了 .NET 开发人员构建自定义应用系统，能极大的节约开发成本，缩短项目的开发周期。
 SuperMap iServer Connector for .NET 作为新一代轻量级开发类库，以纯端的方式对接 SuperMap iServer REST 服务以及企业级的私有云 GIS服务，方便了 .NET 平台用户使用 SuperMap iServer REST 服务。用户可在 ASP.NET MVC 的应用系统中通过 SuperMap iServer Connector 访问服务；也可以通过扩展 SuperMap Deskpro .NET 的插件来访问 SuperMap iServer REST 服务；还可以结合开源的第三方客户端（如 GMap.NET,SharpMap,Mapsui 等）访问 SuperMap iServer REST 服务。这样，对于.NET 开发人员，降低了学习成本、提高了开发效率；对企业，则大大减少了应用GIS的开发成本。 
 SuperMap iServer Connector for .NET 产品提供 .NET Framework SDK 有： .NET 2.0、.NET 3.5 和 .NET 4.0。 
+
 此处提供的是产品的源码包，用户可以根据自己的需求进行相应的需求扩展。
 
 产品包的获取：
